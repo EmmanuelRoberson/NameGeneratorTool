@@ -1,0 +1,46 @@
+﻿using System;
+using System.Linq;
+
+namespace IntroToCSharp
+{
+    class NameGenetator
+    {
+        private string _name;
+
+        public IPrefixable prefixes;
+        public ISuffixable suffixes;
+        public IBaseNameBuildable nameBuilder;
+
+        public int nameLength;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                _name = value;
+            }
+        }
+
+        public string GenerateName()
+        {
+            Random rand = new Random();
+
+            nameLength = rand.Next(3, 7);
+
+            //generates the base name
+            Name = nameBuilder.GenerateBaseName(nameLength);
+
+            //adds the prefix
+            prefixes.AddPrefix(ref _name);
+
+            //adds the suffix
+            suffixes.AddSuffix(ref _name);
+
+            return Name;
+        }
+    }
+}
