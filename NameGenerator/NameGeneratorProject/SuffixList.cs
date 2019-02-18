@@ -18,7 +18,7 @@ namespace IntroToCSharp
 
         public string[] Suffixes { get; set; } =
         {
-            " ", " ", " ","SON",
+            " ", " ", "STER","SON",
             "ARD", "IAMS", "S",
             "ES","ING", "SMITH",
             "AN","E", "INS",

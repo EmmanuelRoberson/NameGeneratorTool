@@ -13,15 +13,26 @@ namespace IntroToCSharp
         {
             int prefixIndex = rand.Next(0, 18);
 
+            if (Prefixes[prefixIndex].EndsWith("A")
+                || Prefixes[prefixIndex].EndsWith("E")
+                || Prefixes[prefixIndex].EndsWith("I")
+                || Prefixes[prefixIndex].EndsWith("O")
+                || Prefixes[prefixIndex].EndsWith("U")
+                || Prefixes[prefixIndex].EndsWith("Y"))
+            {
+                BaseNameBuilder thisIsToGeTConsonants = new BaseNameBuilder();
+                str = thisIsToGeTConsonants.RandConsonant + str;
+            }
+
             str = Prefixes[prefixIndex] + str;
         }
 
         public string[] Prefixes { get; set; } =
         {
             "", "", "", "Mc",
-            "MAC", "CYN", "CON",
-            "AY", "WIN", "DAR",
-            "EL", "SI", "", "",
+            "MAC", "JAM", "CON",
+            "AY", "HAR", "DAR",
+            "EL", "SI", "FRAN", "MON",
             "", "", "", "LO"
         };
     }

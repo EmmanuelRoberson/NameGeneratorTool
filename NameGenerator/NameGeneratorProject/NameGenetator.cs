@@ -29,7 +29,7 @@ namespace IntroToCSharp
         {
             Random rand = new Random();
 
-            nameLength = rand.Next(3, 7);
+            nameLength = rand.Next(1, 3);
 
             //generates the base name
             Name = nameBuilder.GenerateBaseName(nameLength);

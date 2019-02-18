@@ -154,6 +154,15 @@ namespace IntroToCSharp
             }
         }
 
+        public string RandConsonant
+        {
+            get { return consonants[rand.Next(0, consonants.Length)]; }
+        }
+
+        public string RandVowel
+        {
+            get { return vowels[rand.Next(0, vowels.Length)]; }
+        }
 
         string IBaseNameBuildable.GenerateBaseName(int length)
         {
