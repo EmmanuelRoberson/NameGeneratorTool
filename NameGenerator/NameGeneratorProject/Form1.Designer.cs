@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.nameList = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // nameList
+            // 
+            this.nameList.Location = new System.Drawing.Point(12, 12);
+            this.nameList.Name = "nameList";
+            this.nameList.Size = new System.Drawing.Size(254, 20);
+            this.nameList.TabIndex = 0;
+            this.nameList.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(608, 450);
+            this.Controls.Add(this.nameList);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox nameList;
     }
 }

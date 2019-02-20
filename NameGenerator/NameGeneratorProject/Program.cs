@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Forms;
+using NameGeneratorProject;
 
 namespace IntroToCSharp
 {
@@ -33,17 +35,22 @@ namespace IntroToCSharp
             Console.WriteLine(str);
         }
 
+        [STAThread]
         static void Main(string[] args)
         {
 
+
+
             hasntQuit = true;
 
-            NameGenetator namer = new NameGenetator();
+            RandomNameGenetator namer = new RandomNameGenetator();
             namer.nameBuilder = new BaseNameBuilder();
             namer.prefixes = new PrefixList();
             namer.suffixes = new SuffixList();
 
             string[] nameList = new string[10];
+
+            Form1 nameGeneratorForm = new Form1();
 
             void GenerateTenNames()
             {
@@ -51,17 +58,14 @@ namespace IntroToCSharp
                 {
                     nameList[i] = namer.GenerateName();
                 }
+
+                nameGeneratorForm.SetTextBox(nameList, 10);
             }
 
-            while (hasntQuit)
-            {
+            Application.EnableVisualStyles();
+            Application.Run(nameGeneratorForm);
 
-                GenerateTenNames();
-
-            }
-
-
-
+            GenerateTenNames();
         }
     }
 }

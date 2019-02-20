@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace IntroToCSharp
 {
-    class NameGenetator
+    class RandomNameGenetator
     {
         private string _name;
 

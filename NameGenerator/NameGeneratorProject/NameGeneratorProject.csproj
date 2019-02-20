@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,7 +59,8 @@
     <Compile Include="IPrefixable.cs" />
     <Compile Include="ISuffixable.cs" />
     <Compile Include="ITestInterface.cs" />
-    <Compile Include="NameGenetator.cs" />
+    <Compile Include="PresetNameBuilder.cs" />
+    <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrefixList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
