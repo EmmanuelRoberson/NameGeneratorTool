@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IntroToCSharp
 {
-    interface IPrefixable
+    public interface IPrefixable
     {
         void AddPrefix(ref string str);
 
