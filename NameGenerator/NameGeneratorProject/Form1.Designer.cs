@@ -41,13 +41,19 @@
             this.japaneseMaleButton = new System.Windows.Forms.Button();
             this.japaneseFemaleNameButton = new System.Windows.Forms.Button();
             this.japaneseRandomGeneratedNameButton = new System.Windows.Forms.Button();
+            this.frenchNamesLabel = new System.Windows.Forms.Label();
+            this.frenchMaleNameButton = new System.Windows.Forms.Button();
+            this.frenchFemaleNameButton = new System.Windows.Forms.Button();
+            this.russianNamesLabel = new System.Windows.Forms.Label();
+            this.russianMaleNameButton = new System.Windows.Forms.Button();
+            this.russianFemaleNameButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // randomGeneratedNameButton
             // 
             this.randomGeneratedNameButton.Location = new System.Drawing.Point(12, 204);
             this.randomGeneratedNameButton.Name = "randomGeneratedNameButton";
-            this.randomGeneratedNameButton.Size = new System.Drawing.Size(206, 46);
+            this.randomGeneratedNameButton.Size = new System.Drawing.Size(192, 46);
             this.randomGeneratedNameButton.TabIndex = 0;
             this.randomGeneratedNameButton.Text = "RANDOM GENERATED NAME";
             this.randomGeneratedNameButton.UseVisualStyleBackColor = true;
@@ -76,7 +82,7 @@
             // 
             // hispanicFemaleNameButton
             // 
-            this.hispanicFemaleNameButton.Location = new System.Drawing.Point(125, 72);
+            this.hispanicFemaleNameButton.Location = new System.Drawing.Point(111, 72);
             this.hispanicFemaleNameButton.Name = "hispanicFemaleNameButton";
             this.hispanicFemaleNameButton.Size = new System.Drawing.Size(93, 41);
             this.hispanicFemaleNameButton.TabIndex = 7;
@@ -86,7 +92,7 @@
             // 
             // hispanicMaleNameButton
             // 
-            this.hispanicMaleNameButton.Location = new System.Drawing.Point(125, 25);
+            this.hispanicMaleNameButton.Location = new System.Drawing.Point(111, 25);
             this.hispanicMaleNameButton.Name = "hispanicMaleNameButton";
             this.hispanicMaleNameButton.Size = new System.Drawing.Size(93, 41);
             this.hispanicMaleNameButton.TabIndex = 8;
@@ -127,7 +133,7 @@
             // hispanicNameLabel
             // 
             this.hispanicNameLabel.AutoSize = true;
-            this.hispanicNameLabel.Location = new System.Drawing.Point(160, 9);
+            this.hispanicNameLabel.Location = new System.Drawing.Point(144, 9);
             this.hispanicNameLabel.Name = "hispanicNameLabel";
             this.hispanicNameLabel.Size = new System.Drawing.Size(25, 13);
             this.hispanicNameLabel.TabIndex = 13;
@@ -137,7 +143,7 @@
             // japaneseNameLabel
             // 
             this.japaneseNameLabel.AutoSize = true;
-            this.japaneseNameLabel.Location = new System.Drawing.Point(270, 9);
+            this.japaneseNameLabel.Location = new System.Drawing.Point(244, 9);
             this.japaneseNameLabel.Name = "japaneseNameLabel";
             this.japaneseNameLabel.Size = new System.Drawing.Size(26, 13);
             this.japaneseNameLabel.TabIndex = 14;
@@ -146,7 +152,7 @@
             // 
             // japaneseMaleButton
             // 
-            this.japaneseMaleButton.Location = new System.Drawing.Point(238, 25);
+            this.japaneseMaleButton.Location = new System.Drawing.Point(210, 25);
             this.japaneseMaleButton.Name = "japaneseMaleButton";
             this.japaneseMaleButton.Size = new System.Drawing.Size(93, 41);
             this.japaneseMaleButton.TabIndex = 15;
@@ -156,7 +162,7 @@
             // 
             // japaneseFemaleNameButton
             // 
-            this.japaneseFemaleNameButton.Location = new System.Drawing.Point(238, 72);
+            this.japaneseFemaleNameButton.Location = new System.Drawing.Point(210, 72);
             this.japaneseFemaleNameButton.Name = "japaneseFemaleNameButton";
             this.japaneseFemaleNameButton.Size = new System.Drawing.Size(93, 41);
             this.japaneseFemaleNameButton.TabIndex = 16;
@@ -166,7 +172,7 @@
             // 
             // japaneseRandomGeneratedNameButton
             // 
-            this.japaneseRandomGeneratedNameButton.Location = new System.Drawing.Point(238, 119);
+            this.japaneseRandomGeneratedNameButton.Location = new System.Drawing.Point(210, 119);
             this.japaneseRandomGeneratedNameButton.Name = "japaneseRandomGeneratedNameButton";
             this.japaneseRandomGeneratedNameButton.Size = new System.Drawing.Size(93, 41);
             this.japaneseRandomGeneratedNameButton.TabIndex = 17;
@@ -174,11 +180,75 @@
             this.japaneseRandomGeneratedNameButton.UseVisualStyleBackColor = true;
             this.japaneseRandomGeneratedNameButton.Click += new System.EventHandler(this.japaneseRandomGeneratedNameButton_Click);
             // 
+            // frenchNamesLabel
+            // 
+            this.frenchNamesLabel.AutoSize = true;
+            this.frenchNamesLabel.Location = new System.Drawing.Point(340, 9);
+            this.frenchNamesLabel.Name = "frenchNamesLabel";
+            this.frenchNamesLabel.Size = new System.Drawing.Size(28, 13);
+            this.frenchNamesLabel.TabIndex = 18;
+            this.frenchNamesLabel.Text = "FRE";
+            // 
+            // frenchMaleNameButton
+            // 
+            this.frenchMaleNameButton.Location = new System.Drawing.Point(309, 25);
+            this.frenchMaleNameButton.Name = "frenchMaleNameButton";
+            this.frenchMaleNameButton.Size = new System.Drawing.Size(93, 41);
+            this.frenchMaleNameButton.TabIndex = 19;
+            this.frenchMaleNameButton.Text = "MALE NAME";
+            this.frenchMaleNameButton.UseVisualStyleBackColor = true;
+            this.frenchMaleNameButton.Click += new System.EventHandler(this.frenchMaleNameButton_Click);
+            // 
+            // frenchFemaleNameButton
+            // 
+            this.frenchFemaleNameButton.Location = new System.Drawing.Point(309, 72);
+            this.frenchFemaleNameButton.Name = "frenchFemaleNameButton";
+            this.frenchFemaleNameButton.Size = new System.Drawing.Size(93, 41);
+            this.frenchFemaleNameButton.TabIndex = 20;
+            this.frenchFemaleNameButton.Text = "FEMALE NAME";
+            this.frenchFemaleNameButton.UseVisualStyleBackColor = true;
+            this.frenchFemaleNameButton.Click += new System.EventHandler(this.frenchFemaleNameButton_Click);
+            // 
+            // russianNamesLabel
+            // 
+            this.russianNamesLabel.AutoSize = true;
+            this.russianNamesLabel.Location = new System.Drawing.Point(439, 9);
+            this.russianNamesLabel.Name = "russianNamesLabel";
+            this.russianNamesLabel.Size = new System.Drawing.Size(30, 13);
+            this.russianNamesLabel.TabIndex = 21;
+            this.russianNamesLabel.Text = "RUS";
+            // 
+            // russianMaleNameButton
+            // 
+            this.russianMaleNameButton.Location = new System.Drawing.Point(408, 25);
+            this.russianMaleNameButton.Name = "russianMaleNameButton";
+            this.russianMaleNameButton.Size = new System.Drawing.Size(93, 41);
+            this.russianMaleNameButton.TabIndex = 24;
+            this.russianMaleNameButton.Text = "MALE NAME";
+            this.russianMaleNameButton.UseVisualStyleBackColor = true;
+            this.russianMaleNameButton.Click += new System.EventHandler(this.russianMaleNameButton_Click);
+            // 
+            // russianFemaleNameButton
+            // 
+            this.russianFemaleNameButton.Location = new System.Drawing.Point(408, 72);
+            this.russianFemaleNameButton.Name = "russianFemaleNameButton";
+            this.russianFemaleNameButton.Size = new System.Drawing.Size(93, 41);
+            this.russianFemaleNameButton.TabIndex = 25;
+            this.russianFemaleNameButton.Text = "FEMALE NAME";
+            this.russianFemaleNameButton.UseVisualStyleBackColor = true;
+            this.russianFemaleNameButton.Click += new System.EventHandler(this.russianFemaleNameButton_Click);
+            // 
             // nameGeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 353);
+            this.Controls.Add(this.russianFemaleNameButton);
+            this.Controls.Add(this.russianMaleNameButton);
+            this.Controls.Add(this.russianNamesLabel);
+            this.Controls.Add(this.frenchFemaleNameButton);
+            this.Controls.Add(this.frenchMaleNameButton);
+            this.Controls.Add(this.frenchNamesLabel);
             this.Controls.Add(this.japaneseRandomGeneratedNameButton);
             this.Controls.Add(this.japaneseFemaleNameButton);
             this.Controls.Add(this.japaneseMaleButton);
@@ -215,5 +285,11 @@
         private System.Windows.Forms.Button japaneseMaleButton;
         private System.Windows.Forms.Button japaneseFemaleNameButton;
         private System.Windows.Forms.Button japaneseRandomGeneratedNameButton;
+        private System.Windows.Forms.Label frenchNamesLabel;
+        private System.Windows.Forms.Button frenchMaleNameButton;
+        private System.Windows.Forms.Button frenchFemaleNameButton;
+        private System.Windows.Forms.Label russianNamesLabel;
+        private System.Windows.Forms.Button russianMaleNameButton;
+        private System.Windows.Forms.Button russianFemaleNameButton;
     }
 }

@@ -61,9 +61,11 @@
     <Compile Include="Interfaces\IPrefixable.cs" />
     <Compile Include="Interfaces\ISuffixable.cs" />
     <Compile Include="Interfaces\ITestInterface.cs" />
+    <Compile Include="NationalNameClasses\FrenchNameBuilder.cs" />
     <Compile Include="NationalNameClasses\JapaneseNameBuilder.cs" />
     <Compile Include="NationalNameClasses\AmericanNameBuilder.cs" />
     <Compile Include="NationalNameClasses\HispanicNameBuilder.cs" />
+    <Compile Include="NationalNameClasses\RussianNameBuilder.cs" />
     <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrefixList.cs" />
     <Compile Include="Program.cs" />

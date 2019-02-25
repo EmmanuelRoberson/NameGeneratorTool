@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using IntroToCSharp;
+using NameGeneratorProject.NationalNameClasses;
 
 namespace NameGeneratorProject
 {
@@ -51,7 +52,8 @@ namespace NameGeneratorProject
             NameNationalities[(int)Nationalities.USA] = new AmericanNameBuilder("AmericanFirstnames.csv");
             NameNationalities[(int)Nationalities.HIS] = new HispanicNameBuilder("HispanicFirstnames.csv");
             NameNationalities[(int)Nationalities.JAP] = new JapaneseNameBuilder("JapaneseFirstnames.csv");
-
+            NameNationalities[(int)Nationalities.FRE] = new FrenchNameBuilder("FrenchFirstnames.csv");
+            NameNationalities[(int)Nationalities.RUS] = new RussianNameBuilder("RussianFirstnames.csv");
         }
 
         //Save Name
@@ -147,6 +149,27 @@ namespace NameGeneratorProject
             nameGeneratedButton.Text = nameGenerated;
         }
 
+        private void frenchMaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.FRE].MaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
 
+        private void frenchFemaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.FRE].FemaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+
+        private void russianMaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.RUS].MaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+        private void russianFemaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.RUS].FemaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
     }
 }
