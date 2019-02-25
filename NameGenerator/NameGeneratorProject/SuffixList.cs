@@ -11,19 +11,21 @@ namespace IntroToCSharp
         Random rand = new Random();
         void ISuffixable.AddSuffix(ref string str)
         {
-            int suffixIndex = rand.Next(0, 18);
+            int suffixIndex = rand.Next(0, 30);
 
             str += Suffixes[suffixIndex];
         }
 
         public string[] Suffixes { get; set; } =
         {
-            " ", " ", "STER","SON",
-            "ARD", "IAMS", "S",
-            "ES","ING", "SMITH",
-            "AN","E", "INS",
-            "ELL", "ER","EAUX",
-            "BERG", "Y"
+            "o", "dule", "ster","son",
+            "ard", "iams", "s",
+            "es","ing", "smith",
+            "an","e", "ins",
+            "ell", "er","eaux",
+            "berg", "y", "ers",
+            "retta","beth","sson","","","","",
+            "","","",""
         };
     }
 }

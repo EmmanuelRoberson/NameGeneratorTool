@@ -11,17 +11,21 @@ namespace IntroToCSharp
         Random rand = new Random();
         void IPrefixable.AddPrefix(ref string str)
         {
-            int prefixIndex = rand.Next(0, 18);
+            int prefixIndex = rand.Next(0, 30);
 
-            if (Prefixes[prefixIndex].EndsWith("A")
-                || Prefixes[prefixIndex].EndsWith("E")
-                || Prefixes[prefixIndex].EndsWith("I")
-                || Prefixes[prefixIndex].EndsWith("O")
-                || Prefixes[prefixIndex].EndsWith("U")
-                || Prefixes[prefixIndex].EndsWith("Y"))
+            // this is so the name wont have a capital letter anywhere but the beginning
+            if (prefixIndex < 18)
+                str = str.ToLower();
+
+            if (Prefixes[prefixIndex].EndsWith("a")
+                || Prefixes[prefixIndex].EndsWith("e")
+                || Prefixes[prefixIndex].EndsWith("i")
+                || Prefixes[prefixIndex].EndsWith("o")
+                || Prefixes[prefixIndex].EndsWith("u")
+                || Prefixes[prefixIndex].EndsWith("y"))
             {
-                BaseNameBuilder thisIsToGeTConsonants = new BaseNameBuilder();
-                str = thisIsToGeTConsonants.RandConsonant + str;
+                BaseNameBuilder bridgeVowelToConants = new BaseNameBuilder();
+                str = bridgeVowelToConants.RandConsonant + str;
             }
 
             str = Prefixes[prefixIndex] + str;
@@ -29,11 +33,13 @@ namespace IntroToCSharp
 
         public string[] Prefixes { get; set; } =
         {
-            "", "", "", "Mc",
-            "MAC", "JAM", "CON",
-            "AY", "HAR", "DAR",
-            "EL", "SI", "FRAN", "MON",
-            "", "", "", "LO"
+            "Wes", "Ka", "Yu", "Mc",
+            "Ta", "Jam", "Con",
+            "Ay", "Har", "Dar",
+            "El", "Si", "Fran", "Mon",
+            "Aram", "Oli", "Gat", "Lo",
+            "","","","","","",
+            "","","","","",""
         };
     }
 }

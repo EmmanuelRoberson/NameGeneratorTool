@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +16,42 @@ using IntroToCSharp;
 
 namespace NameGeneratorProject
 {
-    public partial class Form1 : Form
+    enum Nationalities
     {
-        public RandomNameGenetator fullNameBuilder;
-        public string nameGenerated;
+        USA = 0,
+        HIS = 1,
+        JAP = 2,
+        FRE = 3,
+        RUS = 4,
+        TBA = 5
+    }
 
-        public Form1()
+    public partial class nameGeneratorForm : Form
+    {
+
+        public RandomNameGenetator RandomNameBuilder;
+        public string nameGenerated;
+        public AmericanNameBuilder AmericanNameBuilder;
+
+        //indexes:: 0-American, 1-Hispanic, 2-Japanese, 3-French, 4-Russian, 5-TBA 
+        public BasePresetName[] NameNationalities = new BasePresetName[6];
+
+
+
+        public nameGeneratorForm()
         {
             InitializeComponent();
-            fullNameBuilder = new RandomNameGenetator();
-            fullNameBuilder.nameBuilder = new BaseNameBuilder();
-            fullNameBuilder.prefixes = new PrefixList();
-            fullNameBuilder.suffixes = new SuffixList();
+            RandomNameBuilder = new RandomNameGenetator
+            {
+                nameBuilder = new BaseNameBuilder(),
+                prefixes = new PrefixList(),
+                suffixes = new SuffixList()
+            };
+
+            NameNationalities[(int)Nationalities.USA] = new AmericanNameBuilder("AmericanFirstnames.csv");
+            NameNationalities[(int)Nationalities.HIS] = new HispanicNameBuilder("HispanicFirstnames.csv");
+            NameNationalities[(int)Nationalities.JAP] = new JapaneseNameBuilder("JapaneseFirstnames.csv");
+
         }
 
         //Save Name
@@ -44,10 +69,10 @@ namespace NameGeneratorProject
 
         }
 
-        //Generate Name
+        //GENERATE NAME
         private void button1_Click(object sender, EventArgs e)
         {
-            nameGenerated = fullNameBuilder.GenerateName();
+            nameGenerated = RandomNameBuilder.GenerateName();
             nameGeneratedButton.Text = nameGenerated;
         }
 
@@ -56,11 +81,72 @@ namespace NameGeneratorProject
 
         }
 
-        //Name Generated
+        //[No Name Generated]
         private void nameGeneratedButton_Click(object sender, EventArgs e)
         {
-            nameGenerated = fullNameBuilder.GenerateName();
+
+        }
+
+        private void hispanicMaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.HIS].MaleName;
             nameGeneratedButton.Text = nameGenerated;
         }
+
+        private void hispanicFemaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.HIS].FemaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+
+        private void americanMaleName_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.USA].MaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+
+        private void americanFemaleName_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.USA].FemaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+
+        private void americanNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hispanicNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void japaneseNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void japaneseMaleButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int) Nationalities.JAP].MaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+        private void japaneseFemaleNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = NameNationalities[(int)Nationalities.JAP].FemaleName;
+            nameGeneratedButton.Text = nameGenerated;
+        }
+        private void japaneseRandomGeneratedNameButton_Click(object sender, EventArgs e)
+        {
+            var newJap = NameNationalities[(int)Nationalities.JAP];
+            var newJapProp = newJap.GetType();
+
+            object obj = Activator.CreateInstance(newJapProp, "JapaneseFirstnames.csv");
+            newJapProp.InvokeMember("SetSyllables", BindingFlags.InvokeMethod, null, obj, new object[] { "JapaneseSyllables.csv" });
+            nameGenerated = (string)newJapProp.InvokeMember("GenerateName", BindingFlags.GetProperty, null, obj, new object[0]);
+            nameGeneratedButton.Text = nameGenerated;
+        }
+
+
     }
 }

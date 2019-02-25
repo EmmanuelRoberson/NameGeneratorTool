@@ -20,32 +20,32 @@ namespace IntroToCSharp
             //vowel assignments
             {
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 33; i++)
-                    vowels[i] = "E";
+                    vowels[i] = "e";
 
                 vowelIndexesFilled += 33;
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 21; i++)
-                    vowels[i] = "A";
+                    vowels[i] = "a";
 
                 vowelIndexesFilled += 21;
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 19; i++)
-                    vowels[i] = "O";
+                    vowels[i] = "o";
 
                 vowelIndexesFilled += 19;
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 18; i++)
-                    vowels[i] = "I";
+                    vowels[i] = "i";
 
                 vowelIndexesFilled += 18;
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 7; i++)
-                    vowels[i] = "U";
+                    vowels[i] = "u";
 
                 vowelIndexesFilled += 7;
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 5; i++)
-                    vowels[i] = "Y";
+                    vowels[i] = "y";
 
                 vowelIndexesFilled += 5;
             }
@@ -53,104 +53,102 @@ namespace IntroToCSharp
             //consonant assignments
             {
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 23; i++)
-                    consonants[i] = "T";
+                    consonants[i] = "t";
 
                 consonantIndexesFilled += 23;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 18; i++)
-                    consonants[i] = "N";
+                    consonants[i] = "n";
 
                 consonantIndexesFilled += 18;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 16; i++)
-                    consonants[i] = "S";
+                    consonants[i] = "s";
 
                 consonantIndexesFilled += 16;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 16; i++)
-                    consonants[i] = "H";
+                    consonants[i] = "h";
 
                 consonantIndexesFilled += 16;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 16; i++)
-                    consonants[i] = "R";
+                    consonants[i] = "r";
 
                 consonantIndexesFilled += 16;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 11; i++)
-                    consonants[i] = "D";
+                    consonants[i] = "d";
 
                 consonantIndexesFilled += 11;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 10; i++)
-                    consonants[i] = "L";
+                    consonants[i] = "l";
 
                 consonantIndexesFilled += 10;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 7; i++)
-                    consonants[i] = "C";
+                    consonants[i] = "c";
 
                 consonantIndexesFilled += 7;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 6; i++)
-                    consonants[i] = "M";
+                    consonants[i] = "m";
 
                 consonantIndexesFilled += 6;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 6; i++)
-                    consonants[i] = "W";
+                    consonants[i] = "w";
 
                 consonantIndexesFilled += 6;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 6; i++)
-                    consonants[i] = "F";
+                    consonants[i] = "f";
 
                     consonantIndexesFilled += 6;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 5; i++)
-                    consonants[i] = "G";
+                    consonants[i] = "g";
 
                 consonantIndexesFilled += 5;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 5; i++)
-                    consonants[i] = "P";
+                    consonants[i] = "p";
 
                 consonantIndexesFilled += 5;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 4; i++)
-                    consonants[i] = "B";
+                    consonants[i] = "b";
 
                 consonantIndexesFilled += 4;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 2; i++)
-                    consonants[i] = "V";
+                    consonants[i] = "v";
 
                 consonantIndexesFilled += 2;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 2; i++)
-                    consonants[i] = "K";
+                    consonants[i] = "k";
 
                 consonantIndexesFilled += 2;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 1; i++)
-                    consonants[i] = "J";
+                    consonants[i] = "j";
 
                 consonantIndexesFilled += 1;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 1; i++)
-                    consonants[i] = "X";
+                    consonants[i] = "x";
 
                 consonantIndexesFilled += 1;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 1; i++)
-                    consonants[i] = "Q";
+                    consonants[i] = "q";
 
                 consonantIndexesFilled += 1;
 
                 for (int i = consonantIndexesFilled; i < consonantIndexesFilled + 1; i++)
-                    consonants[i] = "Z";
-
-                consonantIndexesFilled += 1;
+                    consonants[i] = "z";
             }
         }
 
@@ -169,16 +167,14 @@ namespace IntroToCSharp
 
             string baseName;
 
-            // '+' is because the second argument in next is exclusive
             int consonant = rand.Next(0, consonants.Length);
 
-            // add a "+ 1" to the end of vowels.Length so the name has a chance to start with w
             int vowel = rand.Next(0, vowels.Length);
 
             //initializes baseName with wither a vowel or consonant
             baseName = (length % 2 == 0) ?
-                consonants[consonant] :
-                vowels[vowel];
+                consonants[consonant].ToUpper() :
+                vowels[vowel].ToUpper();
 
             //i is set to length % 2 so it will follow it up with the alternate type of letter
             for (int i = length % 2; i < length; i++)

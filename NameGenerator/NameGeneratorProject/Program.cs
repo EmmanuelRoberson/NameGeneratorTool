@@ -38,7 +38,7 @@ namespace IntroToCSharp
         static void Main(string[] args)
         {
 
-            Form1 nameGeneratorForm = new Form1();
+            nameGeneratorForm nameGeneratorForm = new nameGeneratorForm();
 
             Application.EnableVisualStyles();
             Application.Run(nameGeneratorForm);
