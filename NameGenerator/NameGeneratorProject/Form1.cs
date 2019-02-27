@@ -74,13 +74,12 @@ namespace NameGeneratorProject
         //GENERATE NAME
         private void button1_Click(object sender, EventArgs e)
         {
-            nameGenerated = RandomNameBuilder.GenerateName();
-            nameGeneratedButton.Text = nameGenerated;
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            japaneseNameGeneratorButton.Visible = false;
         }
 
         //[No Name Generated]
@@ -89,87 +88,94 @@ namespace NameGeneratorProject
 
         }
 
-        private void hispanicMaleNameButton_Click(object sender, EventArgs e)
+        private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nameGenerated = NameNationalities[(int)Nationalities.HIS].MaleName;
-            nameGeneratedButton.Text = nameGenerated;
+            if (!(nationalitiesDropDox.SelectedItem == "Japanese"))
+            {
+                this.Size = new Size(this.Size.Width, 150);
+                japaneseNameGeneratorButton.Visible = false;
+            }
+            else
+            {
+                this.Size = new Size(this.Size.Width, 220);
+                japaneseNameGeneratorButton.Visible = true;
+            }
         }
 
-        private void hispanicFemaleNameButton_Click(object sender, EventArgs e)
+        private void maleSymbolButton_Click(object sender, EventArgs e)
         {
-            nameGenerated = NameNationalities[(int)Nationalities.HIS].FemaleName;
-            nameGeneratedButton.Text = nameGenerated;
+            switch (nationalitiesDropDox.SelectedItem)
+            {
+                case "American":
+                    nameGenerated = NameNationalities[(int)Nationalities.USA].MaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Hispanic":
+                    nameGenerated = NameNationalities[(int)Nationalities.HIS].MaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Japanese":
+                    nameGenerated = NameNationalities[(int)Nationalities.JAP].MaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "French":
+                    nameGenerated = NameNationalities[(int)Nationalities.FRE].MaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Russian":
+                    nameGenerated = NameNationalities[(int)Nationalities.RUS].MaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Randomly Generated":
+                    nameGenerated = RandomNameBuilder.GenerateName();
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+            }
         }
 
-        private void americanMaleName_Click(object sender, EventArgs e)
+        private void femaleSymbolButton_Click(object sender, EventArgs e)
         {
-            nameGenerated = NameNationalities[(int)Nationalities.USA].MaleName;
-            nameGeneratedButton.Text = nameGenerated;
+            switch (nationalitiesDropDox.SelectedItem)
+            {
+                case "American":
+                    nameGenerated = NameNationalities[(int)Nationalities.USA].FemaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Hispanic":
+                    nameGenerated = NameNationalities[(int)Nationalities.HIS].FemaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Japanese":
+                    nameGenerated = NameNationalities[(int)Nationalities.JAP].FemaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "French":
+                    nameGenerated = NameNationalities[(int)Nationalities.FRE].FemaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Russian":
+                    nameGenerated = NameNationalities[(int)Nationalities.RUS].FemaleName;
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+                case "Randomly Generated":
+                    nameGenerated = RandomNameBuilder.GenerateName();
+                    nameGeneratedButton.Text = nameGenerated;
+                    break;
+            }
         }
 
-        private void americanFemaleName_Click(object sender, EventArgs e)
+        private void japaneseNameGeneratorButton_Click(object sender, EventArgs e)
         {
-            nameGenerated = NameNationalities[(int)Nationalities.USA].FemaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
+            if (japaneseNameGeneratorButton.Visible)
+            {
+                var newJapProp = NameNationalities[(int)Nationalities.JAP].GetType();
 
-        private void americanNameLabel_Click(object sender, EventArgs e)
-        {
+                object obj = Activator.CreateInstance(newJapProp, "JapaneseFirstnames.csv");
+                newJapProp.InvokeMember("SetSyllables", BindingFlags.InvokeMethod, null, obj, new object[] { "JapaneseSyllables.csv" });
+                nameGenerated = (string)newJapProp.InvokeMember("GenerateName", BindingFlags.GetProperty, null, obj, new object[0]);
+                nameGeneratedButton.Text = nameGenerated;
+            }
 
-        }
-
-        private void hispanicNameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void japaneseNameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void japaneseMaleButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int) Nationalities.JAP].MaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
-        private void japaneseFemaleNameButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int)Nationalities.JAP].FemaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
-        private void japaneseRandomGeneratedNameButton_Click(object sender, EventArgs e)
-        {
-            var newJap = NameNationalities[(int)Nationalities.JAP];
-            var newJapProp = newJap.GetType();
-
-            object obj = Activator.CreateInstance(newJapProp, "JapaneseFirstnames.csv");
-            newJapProp.InvokeMember("SetSyllables", BindingFlags.InvokeMethod, null, obj, new object[] { "JapaneseSyllables.csv" });
-            nameGenerated = (string)newJapProp.InvokeMember("GenerateName", BindingFlags.GetProperty, null, obj, new object[0]);
-            nameGeneratedButton.Text = nameGenerated;
-        }
-
-        private void frenchMaleNameButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int)Nationalities.FRE].MaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
-
-        private void frenchFemaleNameButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int)Nationalities.FRE].FemaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
-
-        private void russianMaleNameButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int)Nationalities.RUS].MaleName;
-            nameGeneratedButton.Text = nameGenerated;
-        }
-        private void russianFemaleNameButton_Click(object sender, EventArgs e)
-        {
-            nameGenerated = NameNationalities[(int)Nationalities.RUS].FemaleName;
-            nameGeneratedButton.Text = nameGenerated;
         }
     }
 }
