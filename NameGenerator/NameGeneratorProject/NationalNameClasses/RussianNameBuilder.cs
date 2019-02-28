@@ -16,7 +16,7 @@ namespace NameGeneratorProject.NationalNameClasses
 
             rand = new Random(0);
 
-            initializeNames(fileName);
+            InitializeNames(fileName);
         }
     }
 }

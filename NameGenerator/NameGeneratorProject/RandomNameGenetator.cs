@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace IntroToCSharp
 {
@@ -7,8 +6,8 @@ namespace IntroToCSharp
     {
         private string _name;
 
-        public IPrefixable prefixes;
-        public ISuffixable suffixes;
+        public IPrependable prefixes;
+        public IAppendable suffixes;
         public IBaseNameBuildable nameBuilder;
 
         public int nameLength;
@@ -35,10 +34,10 @@ namespace IntroToCSharp
             Name = nameBuilder.GenerateBaseName(nameLength);
 
             //adds the prefix
-            prefixes.AddPrefix(ref _name);
+            prefixes.PrependTo(ref _name);
 
             //adds the suffix
-            suffixes.AddSuffix(ref _name);
+            suffixes.AppendTo(ref _name);
 
             return Name;
         }

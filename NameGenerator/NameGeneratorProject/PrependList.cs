@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 
 namespace IntroToCSharp
 {
-    class PrefixList : IPrefixable
+    class PrependList : IPrependable
     {
         Random rand = new Random();
-        void IPrefixable.AddPrefix(ref string str)
+        void IPrependable.PrependTo(ref string str)
         {
-            int prefixIndex = rand.Next(0, 30);
+            int index = rand.Next(0, 30);
 
             // this is so the name wont have a capital letter anywhere but the beginning
-            if (prefixIndex < 18)
+            if (index < 18)
                 str = str.ToLower();
 
-            if (Prefixes[prefixIndex].EndsWith("a")
-                || Prefixes[prefixIndex].EndsWith("e")
-                || Prefixes[prefixIndex].EndsWith("i")
-                || Prefixes[prefixIndex].EndsWith("o")
-                || Prefixes[prefixIndex].EndsWith("u")
-                || Prefixes[prefixIndex].EndsWith("y"))
+            if (Prepend[index].EndsWith("a")
+                || Prepend[index].EndsWith("e")
+                || Prepend[index].EndsWith("i")
+                || Prepend[index].EndsWith("o")
+                || Prepend[index].EndsWith("u")
+                || Prepend[index].EndsWith("y"))
             {
                 BaseNameBuilder bridgeVowelToConants = new BaseNameBuilder();
                 str = bridgeVowelToConants.RandConsonant + str;
             }
 
-            str = Prefixes[prefixIndex] + str;
+            str = Prepend[index] + str;
         }
 
-        public string[] Prefixes { get; set; } =
+        public string[] Prepend { get; set; } =
         {
             "Wes", "Ka", "Yu", "Mc",
             "Ta", "Jam", "Con",

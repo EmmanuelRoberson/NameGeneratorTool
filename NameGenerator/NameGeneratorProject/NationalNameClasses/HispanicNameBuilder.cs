@@ -13,7 +13,7 @@ namespace NameGeneratorProject
 
             rand = new Random();
 
-            initializeNames(fileName);
+            InitializeNames(fileName);
         }
 
         //returns a random male name

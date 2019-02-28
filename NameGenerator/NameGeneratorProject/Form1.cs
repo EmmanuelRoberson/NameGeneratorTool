@@ -17,27 +17,13 @@ using NameGeneratorProject.NationalNameClasses;
 
 namespace NameGeneratorProject
 {
-    enum Nationalities
-    {
-        USA = 0,
-        HIS = 1,
-        JAP = 2,
-        FRE = 3,
-        RUS = 4,
-        TBA = 5
-    }
 
     public partial class nameGeneratorForm : Form
     {
 
         public RandomNameGenetator RandomNameBuilder;
         public string nameGenerated;
-        public AmericanNameBuilder AmericanNameBuilder;
-
-        //indexes:: 0-American, 1-Hispanic, 2-Japanese, 3-French, 4-Russian, 5-TBA 
-        public BasePresetName[] NameNationalities = new BasePresetName[6];
-
-
+        public List<BasePresetName> NameNationalities = new List<BasePresetName>();
 
         public nameGeneratorForm()
         {
@@ -45,15 +31,22 @@ namespace NameGeneratorProject
             RandomNameBuilder = new RandomNameGenetator
             {
                 nameBuilder = new BaseNameBuilder(),
-                prefixes = new PrefixList(),
-                suffixes = new SuffixList()
+                prefixes = new PrependList(),
+                suffixes = new AppendList()
             };
 
-            NameNationalities[(int)Nationalities.USA] = new AmericanNameBuilder("AmericanFirstnames.csv");
-            NameNationalities[(int)Nationalities.HIS] = new HispanicNameBuilder("HispanicFirstnames.csv");
-            NameNationalities[(int)Nationalities.JAP] = new JapaneseNameBuilder("JapaneseFirstnames.csv");
-            NameNationalities[(int)Nationalities.FRE] = new FrenchNameBuilder("FrenchFirstnames.csv");
-            NameNationalities[(int)Nationalities.RUS] = new RussianNameBuilder("RussianFirstnames.csv");
+            NameNationalities.Add(new AmericanNameBuilder("AmericanFirstnames.csv"){NameType = "American"});
+            NameNationalities.Add(new AmericanNameBuilder("HispanicFirstnames.csv"){NameType = "Hispanic"});
+            NameNationalities.Add(new AmericanNameBuilder("JapaneseFirstnames.csv"){NameType = "Japanese" });
+            NameNationalities.Add(new AmericanNameBuilder("FrenchFirstnames.csv"){NameType = "French"});
+            NameNationalities.Add(new RussianNameBuilder("RussianFirstnames.csv"){NameType = "Russian"});
+
+            int i = 0;
+            foreach (BasePresetName index in NameNationalities)
+            {
+                nationalitiesDropDox.Items.Add(NameNationalities[i].NameType);
+                i++;
+            }
         }
 
         //Save Name
@@ -90,6 +83,7 @@ namespace NameGeneratorProject
 
         private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (!(nationalitiesDropDox.SelectedItem == "Japanese"))
             {
                 this.Size = new Size(this.Size.Width, 150);
@@ -104,6 +98,7 @@ namespace NameGeneratorProject
 
         private void maleSymbolButton_Click(object sender, EventArgs e)
         {
+
             switch (nationalitiesDropDox.SelectedItem)
             {
                 case "American":
@@ -176,6 +171,11 @@ namespace NameGeneratorProject
                 nameGeneratedButton.Text = nameGenerated;
             }
 
+        }
+
+        private void honorificTypeDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //honorificTypeDropdownBox.Items;
         }
     }
 }
