@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace IntroToCSharp
 {
-    public interface IPrefixable
+    public interface IPrependable
     {
-        void AddPrefix(ref string str);
+        void PrependTo(ref string str);
 
-        string[] Prefixes { get; set; }
+        string[] Prepend { get; set; }
     }
 }

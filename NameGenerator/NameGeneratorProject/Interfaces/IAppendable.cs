@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace IntroToCSharp
 {
-    public interface ISuffixable
+    public interface IAppendable
     {
-        void AddSuffix(ref string str);
+        void AppendTo(ref string str);
 
-        string[] Suffixes{ get; set; }
+        string[] Append{ get; set; }
     }
 
 }

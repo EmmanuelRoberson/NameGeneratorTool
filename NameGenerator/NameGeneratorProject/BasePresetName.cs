@@ -7,13 +7,16 @@ namespace NameGeneratorProject
 {
     public abstract class BasePresetName
     {
+
+        public string NameType { get; set; }
+
         protected List<string> maleFirstNames;
         protected List<string> femaleFirstNames;
         protected List<string> lastNames;
 
         protected Random rand = new Random(DateTime.Now.Millisecond);
 
-        protected void initializeNames(string fileName)
+        protected void InitializeNames(string fileName)
         {
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
             TextFieldParser cvsParser = new TextFieldParser(filepath);

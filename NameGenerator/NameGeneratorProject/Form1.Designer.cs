@@ -35,6 +35,7 @@
             this.maleSymbolButton = new System.Windows.Forms.Button();
             this.femaleSymbolButton = new System.Windows.Forms.Button();
             this.japaneseNameGeneratorButton = new System.Windows.Forms.Button();
+            this.honorificTypeDropdownBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // saveNameButton
@@ -50,7 +51,7 @@
             // 
             // nameGeneratedButton
             // 
-            this.nameGeneratedButton.Location = new System.Drawing.Point(154, 12);
+            this.nameGeneratedButton.Location = new System.Drawing.Point(154, 39);
             this.nameGeneratedButton.Name = "nameGeneratedButton";
             this.nameGeneratedButton.Size = new System.Drawing.Size(131, 21);
             this.nameGeneratedButton.TabIndex = 2;
@@ -62,11 +63,6 @@
             // 
             this.nationalitiesDropDox.FormattingEnabled = true;
             this.nationalitiesDropDox.Items.AddRange(new object[] {
-            "American",
-            "Hispanic",
-            "Japanese",
-            "French",
-            "Russian",
             "Randomly Generated"});
             this.nationalitiesDropDox.Location = new System.Drawing.Point(12, 12);
             this.nationalitiesDropDox.Name = "nationalitiesDropDox";
@@ -107,11 +103,21 @@
             this.japaneseNameGeneratorButton.UseVisualStyleBackColor = true;
             this.japaneseNameGeneratorButton.Click += new System.EventHandler(this.japaneseNameGeneratorButton_Click);
             // 
+            // honorificTypeDropdownBox
+            // 
+            this.honorificTypeDropdownBox.FormattingEnabled = true;
+            this.honorificTypeDropdownBox.Location = new System.Drawing.Point(154, 13);
+            this.honorificTypeDropdownBox.Name = "honorificTypeDropdownBox";
+            this.honorificTypeDropdownBox.Size = new System.Drawing.Size(131, 21);
+            this.honorificTypeDropdownBox.TabIndex = 30;
+            this.honorificTypeDropdownBox.SelectedIndexChanged += new System.EventHandler(this.honorificTypeDropdownBox_SelectedIndexChanged);
+            // 
             // nameGeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 107);
+            this.Controls.Add(this.honorificTypeDropdownBox);
             this.Controls.Add(this.japaneseNameGeneratorButton);
             this.Controls.Add(this.femaleSymbolButton);
             this.Controls.Add(this.maleSymbolButton);
@@ -132,5 +138,6 @@
         private System.Windows.Forms.Button maleSymbolButton;
         private System.Windows.Forms.Button femaleSymbolButton;
         private System.Windows.Forms.Button japaneseNameGeneratorButton;
+        private System.Windows.Forms.ComboBox honorificTypeDropdownBox;
     }
 }

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace IntroToCSharp
 {
-    class SuffixList : ISuffixable
+    class AppendList : IAppendable
     {
         Random rand = new Random();
-        void ISuffixable.AddSuffix(ref string str)
+        void IAppendable.AppendTo(ref string str)
         {
             int suffixIndex = rand.Next(0, 30);
 
-            str += Suffixes[suffixIndex];
+            str += Append[suffixIndex];
         }
 
-        public string[] Suffixes { get; set; } =
+        public string[] Append { get; set; } =
         {
             "o", "dule", "ster","son",
             "ard", "iams", "s",

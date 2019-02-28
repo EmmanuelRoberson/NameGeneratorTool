@@ -19,7 +19,7 @@ namespace NameGeneratorProject
 
             rand = new Random(DateTime.Now.Millisecond);
 
-            initializeNames(fileName);
+            InitializeNames(fileName);
         }
 
         public void SetSyllables(string fileName)
