@@ -52,6 +52,7 @@
     <Compile Include="BaseNameBuilder.cs" />
     <Compile Include="BasePresetName.cs" />
     <Compile Include="CustomListContainer.cs" />
+    <Compile Include="CustomNameGeneratorClasses\JapaneseNameBuilder.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,11 +65,7 @@
     <Compile Include="Interfaces\IPrependable.cs" />
     <Compile Include="Interfaces\IAppendable.cs" />
     <Compile Include="Interfaces\ITestInterface.cs" />
-    <Compile Include="NationalNameClasses\FrenchNameBuilder.cs" />
-    <Compile Include="NationalNameClasses\JapaneseNameBuilder.cs" />
-    <Compile Include="NationalNameClasses\AmericanNameBuilder.cs" />
-    <Compile Include="NationalNameClasses\HispanicNameBuilder.cs" />
-    <Compile Include="NationalNameClasses\RussianNameBuilder.cs" />
+    <Compile Include="NameGeneratorContainer.cs" />
     <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrependList.cs" />
     <Compile Include="Program.cs" />

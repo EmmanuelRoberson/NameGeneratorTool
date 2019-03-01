@@ -8,6 +8,6 @@ namespace NameGeneratorProject
 {
     interface IConvertToListable
     {
-        void InitializeLists(string[] fileNames);
+        void InitializeLists(string fileName);
     }
 }

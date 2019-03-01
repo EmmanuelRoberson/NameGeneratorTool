@@ -13,17 +13,16 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using IntroToCSharp;
-using NameGeneratorProject.NationalNameClasses;
+using NameGeneratorProject.CustomNameGeneratorClasses;
 
 namespace NameGeneratorProject
 {
 
     public partial class nameGeneratorForm : Form
     {
-
-        public RandomNameGenetator RandomNameBuilder;
         public string nameGenerated;
-        public List<BasePresetName> NameNationalities = new List<BasePresetName>();
+        public RandomNameGenetator RandomNameBuilder;
+        public NameGeneratorContainer nameGeneratorList;
 
         public nameGeneratorForm()
         {
@@ -35,16 +34,18 @@ namespace NameGeneratorProject
                 suffixes = new AppendList()
             };
 
-            NameNationalities.Add(new AmericanNameBuilder("AmericanFirstnames.csv"){NameType = "American"});
-            NameNationalities.Add(new AmericanNameBuilder("HispanicFirstnames.csv"){NameType = "Hispanic"});
-            NameNationalities.Add(new AmericanNameBuilder("JapaneseFirstnames.csv"){NameType = "Japanese" });
-            NameNationalities.Add(new AmericanNameBuilder("FrenchFirstnames.csv"){NameType = "French"});
-            NameNationalities.Add(new RussianNameBuilder("RussianFirstnames.csv"){NameType = "Russian"});
+            nameGeneratorList = new NameGeneratorContainer();
+            nameGeneratorList.AddNameGenerator("AmericanFirstnames.csv", "American");
+            nameGeneratorList.AddNameGenerator("HispanicFirstnames.csv", "Hispanic");
+            nameGeneratorList.AddNameGenerator("JapaneseFirstnames.csv", "Japanese");
+            nameGeneratorList.AddNameGenerator("FrenchFirstnames.csv", "French");
+            nameGeneratorList.AddNameGenerator("RussianFirstnames.csv", "Russian");
+            nameGeneratorList.AddNameGenerator("AmericanFirstnames.csv", "American");
 
             int i = 0;
-            foreach (BasePresetName index in NameNationalities)
+            foreach (BasePresetName index in nameGeneratorList.GeneratorList)
             {
-                nationalitiesDropDox.Items.Add(NameNationalities[i].NameType);
+                nationalitiesDropDox.Items.Add(nameGeneratorList.GeneratorList[i].GetNameType);
                 i++;
             }
         }
@@ -83,79 +84,58 @@ namespace NameGeneratorProject
 
         private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!((string)nationalitiesDropDox.SelectedItem == "Randomly Generated"))
+            {
+                randomlyGeneratedNameButton.Hide();
+                maleSymbolButton.Show();
+                femaleSymbolButton.Show();
+            }
+            else
+            {
+                randomlyGeneratedNameButton.Show();
+                maleSymbolButton.Hide();
+                femaleSymbolButton.Hide();
+            }
 
             if (!(nationalitiesDropDox.SelectedItem == "Japanese"))
             {
                 this.Size = new Size(this.Size.Width, 150);
-                japaneseNameGeneratorButton.Visible = false;
+                japaneseNameGeneratorButton.Hide();
             }
             else
             {
                 this.Size = new Size(this.Size.Width, 220);
-                japaneseNameGeneratorButton.Visible = true;
+                japaneseNameGeneratorButton.Show();
             }
         }
 
         private void maleSymbolButton_Click(object sender, EventArgs e)
         {
-
-            switch (nationalitiesDropDox.SelectedItem)
+            if ((string) nationalitiesDropDox.SelectedItem == "Randomly Generated")
             {
-                case "American":
-                    nameGenerated = NameNationalities[(int)Nationalities.USA].MaleName;
+                nameGenerated = RandomNameBuilder.GenerateName();
+                nameGeneratedButton.Text = nameGenerated;
+            }
+
+            foreach (BasePresetName nameGenerator in nameGeneratorList.GeneratorList)
+            {
+                if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
+                {
+                    nameGenerated = nameGenerator.MaleName;
                     nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Hispanic":
-                    nameGenerated = NameNationalities[(int)Nationalities.HIS].MaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Japanese":
-                    nameGenerated = NameNationalities[(int)Nationalities.JAP].MaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "French":
-                    nameGenerated = NameNationalities[(int)Nationalities.FRE].MaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Russian":
-                    nameGenerated = NameNationalities[(int)Nationalities.RUS].MaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Randomly Generated":
-                    nameGenerated = RandomNameBuilder.GenerateName();
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
+                }
             }
         }
 
         private void femaleSymbolButton_Click(object sender, EventArgs e)
         {
-            switch (nationalitiesDropDox.SelectedItem)
+            foreach (BasePresetName nameGenerator in nameGeneratorList.GeneratorList)
             {
-                case "American":
-                    nameGenerated = NameNationalities[(int)Nationalities.USA].FemaleName;
+                if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
+                {
+                    nameGenerated = nameGenerator.FemaleName;
                     nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Hispanic":
-                    nameGenerated = NameNationalities[(int)Nationalities.HIS].FemaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Japanese":
-                    nameGenerated = NameNationalities[(int)Nationalities.JAP].FemaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "French":
-                    nameGenerated = NameNationalities[(int)Nationalities.FRE].FemaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Russian":
-                    nameGenerated = NameNationalities[(int)Nationalities.RUS].FemaleName;
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
-                case "Randomly Generated":
-                    nameGenerated = RandomNameBuilder.GenerateName();
-                    nameGeneratedButton.Text = nameGenerated;
-                    break;
+                }
             }
         }
 
@@ -163,19 +143,27 @@ namespace NameGeneratorProject
         {
             if (japaneseNameGeneratorButton.Visible)
             {
-                var newJapProp = NameNationalities[(int)Nationalities.JAP].GetType();
-
-                object obj = Activator.CreateInstance(newJapProp, "JapaneseFirstnames.csv");
-                newJapProp.InvokeMember("SetSyllables", BindingFlags.InvokeMethod, null, obj, new object[] { "JapaneseSyllables.csv" });
-                nameGenerated = (string)newJapProp.InvokeMember("GenerateName", BindingFlags.GetProperty, null, obj, new object[0]);
-                nameGeneratedButton.Text = nameGenerated;
+                foreach (BasePresetName nameGenerator in nameGeneratorList.GeneratorList)
+                {
+                    if (nameGenerator.GetNameType == "Japanese")
+                    {
+                        JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
+                        nameGenerated = japaneseNameBuilder.GenerateName;
+                        nameGeneratedButton.Text = nameGenerated;
+                    }
+                }
             }
-
         }
 
         private void honorificTypeDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //honorificTypeDropdownBox.Items;
+        }
+
+        private void randomlyGeneratedNameButton_Click(object sender, EventArgs e)
+        {
+            nameGenerated = RandomNameBuilder.GenerateName();
+            nameGeneratedButton.Text = nameGenerated;
         }
     }
 }

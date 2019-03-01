@@ -5,16 +5,24 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace NameGeneratorProject
 {
-    public abstract class BasePresetName
+    public class BasePresetName
     {
-
-        public string NameType { get; set; }
-
         protected List<string> maleFirstNames;
         protected List<string> femaleFirstNames;
         protected List<string> lastNames;
 
-        protected Random rand = new Random(DateTime.Now.Millisecond);
+        protected Random rand;
+
+        public BasePresetName(string fileName)
+        {
+            maleFirstNames = new List<string>();
+            femaleFirstNames = new List<string>();
+            lastNames = new List<string>();
+
+            rand = new Random(DateTime.Now.Millisecond);
+
+            InitializeNames(fileName);
+        }
 
         protected void InitializeNames(string fileName)
         {
@@ -28,16 +36,19 @@ namespace NameGeneratorProject
                 // reads the line, assigns the fields, then moves it to th next line
                 string[] lineFields = cvsParser.ReadFields();
 
+                //cvs file must be formatted like:: [index 0],name,[index 2],name2
                 maleFirstNames.Add(lineFields[1]);
                 femaleFirstNames.Add(lineFields[3]);
             }
         }
 
         //returns a random male name
-        public string MaleName => maleFirstNames[rand.Next(0, 100)];
+        public string MaleName => maleFirstNames[rand.Next(0, maleFirstNames.Count)];
 
         // returns a random female name
-        public string FemaleName => femaleFirstNames[rand.Next(0, 100)];
+        public string FemaleName => femaleFirstNames[rand.Next(0, femaleFirstNames.Count)];
 
+        //keeps track of the type of each name
+        public string GetNameType { get; set; }
     }
 }

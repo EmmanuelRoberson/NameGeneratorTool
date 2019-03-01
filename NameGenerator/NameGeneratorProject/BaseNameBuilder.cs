@@ -8,7 +8,7 @@ namespace IntroToCSharp
         private string[] consonants = new string[157];
         private string[] vowels = new string[103];
 
-        Random rand = new Random();
+        Random rand = new Random(DateTime.Now.Millisecond);
 
         //reference: https://docs.google.com/spreadsheets/d/1K0wAiYK7E9vOz3iQrcHnCfab6TBLh7GnjLx6tlPvZI0/edit?usp=sharing
         public BaseNameBuilder()
@@ -46,8 +46,6 @@ namespace IntroToCSharp
 
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 5; i++)
                     vowels[i] = "y";
-
-                vowelIndexesFilled += 5;
             }
 
             //consonant assignments
@@ -176,7 +174,7 @@ namespace IntroToCSharp
                 consonants[consonant].ToUpper() :
                 vowels[vowel].ToUpper();
 
-            //i is set to length % 2 so it will follow it up with the alternate type of letter
+            //i is set to length % 2 so it will follow it up with the alternate type of letterToBePaired
             for (int i = length % 2; i < length; i++)
             {
                 consonant = rand.Next(0, consonants.Length);
@@ -186,6 +184,146 @@ namespace IntroToCSharp
             }
 
             return baseName;
+        }
+
+        private string LetterPair(string letterToBePaired)
+        {
+            int chanceToPair = rand.Next(0, 1);
+
+            if (chanceToPair == 0)
+                return letterToBePaired;
+            else
+            {
+                foreach (string vowel in vowels)
+                {
+                    if (letterToBePaired == vowel)
+                    {
+                        int vowelsIndex = rand.Next(0, vowels.Length);
+                        letterToBePaired += vowelsIndex;
+                        return letterToBePaired;
+                    }
+                }
+                //B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, X, Z,
+                int num = rand.Next(0, 7);
+                switch (letterToBePaired)
+                {
+                    case "b":
+                        switch (num)
+                        {
+                            case 0:
+                                return "b";
+                            case 1:
+                                return "ae";
+                            case 2:
+                                return "ai";
+                            case 3:
+                                return "ao";
+                            case 4:
+                                return "au";
+                            case 5:
+                                return "ay";
+                            default:
+                                return "a";
+                        }
+                    case "e":
+                        switch (num)
+                        {
+                            case 0:
+                                return "ea";
+                            case 1:
+                                return "ee";
+                            case 2:
+                                return "ei";
+                            case 3:
+                                return "eo";
+                            case 4:
+                                return "eu";
+                            case 5:
+                                return "ey";
+                            default:
+                                return "e";
+                        }
+                    case "i":
+                        switch (num)
+                        {
+                            case 0:
+                                return "ea";
+                            case 1:
+                                return "ee";
+                            case 2:
+                                return "ei";
+                            case 3:
+                                return "eo";
+                            case 4:
+                                return "eu";
+                            case 5:
+                                return "ey";
+                            default:
+                                return "e";
+                        }
+                    case "o":
+                        switch (num)
+                        {
+                            case 0:
+                                return "ea";
+                            case 1:
+                                return "ee";
+                            case 2:
+                                return "ai";
+                            case 3:
+                                return "ao";
+                            case 4:
+                                return "au";
+                            case 5:
+                                return "ay";
+                            default:
+                                return "a";
+                        }
+                    case "u":
+                        switch (num)
+                        {
+                            case 0:
+                                return "aa";
+                            case 1:
+                                return "ae";
+                            case 2:
+                                return "ai";
+                            case 3:
+                                return "ao";
+                            case 4:
+                                return "au";
+                            case 5:
+                                return "ay";
+                            default:
+                                return "a";
+                        }
+                    case "y":
+                        switch (num)
+                        {
+                            case 0:
+                                return "aa";
+                            case 1:
+                                return "ae";
+                            case 2:
+                                return "ai";
+                            case 3:
+                                return "ao";
+                            case 4:
+                                return "au";
+                            case 5:
+                                return "ay";
+                            default:
+                                return "a";
+                        }
+                    default:
+                        return letterToBePaired;
+
+                }
+
+
+
+
+            }
         }
     }
 }
