@@ -40,10 +40,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.nameSpecificationsGroupBox = new System.Windows.Forms.GroupBox();
-            this.honorificComboBox = new System.Windows.Forms.ComboBox();
+            this.availableHonorifics = new System.Windows.Forms.ComboBox();
+            this.honorificTypeLabel = new System.Windows.Forms.Label();
             this.nameNationalityLabel = new System.Windows.Forms.Label();
-            this.honorificLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.honorificComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.nameSpecificationsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +82,7 @@
             // 
             this.maleSymbolButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("maleSymbolButton.BackgroundImage")));
             this.maleSymbolButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.maleSymbolButton.Location = new System.Drawing.Point(395, 170);
+            this.maleSymbolButton.Location = new System.Drawing.Point(283, 106);
             this.maleSymbolButton.Name = "maleSymbolButton";
             this.maleSymbolButton.Size = new System.Drawing.Size(42, 38);
             this.maleSymbolButton.TabIndex = 27;
@@ -93,7 +93,7 @@
             // 
             this.femaleSymbolButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("femaleSymbolButton.BackgroundImage")));
             this.femaleSymbolButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.femaleSymbolButton.Location = new System.Drawing.Point(443, 170);
+            this.femaleSymbolButton.Location = new System.Drawing.Point(347, 106);
             this.femaleSymbolButton.Name = "femaleSymbolButton";
             this.femaleSymbolButton.Size = new System.Drawing.Size(42, 38);
             this.femaleSymbolButton.TabIndex = 28;
@@ -105,9 +105,9 @@
             this.japaneseNameGeneratorButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("japaneseNameGeneratorButton.BackgroundImage")));
             this.japaneseNameGeneratorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.japaneseNameGeneratorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.japaneseNameGeneratorButton.Location = new System.Drawing.Point(294, 150);
+            this.japaneseNameGeneratorButton.Location = new System.Drawing.Point(283, 150);
             this.japaneseNameGeneratorButton.Name = "japaneseNameGeneratorButton";
-            this.japaneseNameGeneratorButton.Size = new System.Drawing.Size(95, 58);
+            this.japaneseNameGeneratorButton.Size = new System.Drawing.Size(106, 58);
             this.japaneseNameGeneratorButton.TabIndex = 29;
             this.japaneseNameGeneratorButton.UseVisualStyleBackColor = true;
             this.japaneseNameGeneratorButton.Click += new System.EventHandler(this.japaneseNameGeneratorButton_Click);
@@ -121,9 +121,9 @@
             this.randomlyGeneratedNameButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.randomlyGeneratedNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.randomlyGeneratedNameButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.randomlyGeneratedNameButton.Location = new System.Drawing.Point(294, 44);
+            this.randomlyGeneratedNameButton.Location = new System.Drawing.Point(283, 44);
             this.randomlyGeneratedNameButton.Name = "randomlyGeneratedNameButton";
-            this.randomlyGeneratedNameButton.Size = new System.Drawing.Size(95, 100);
+            this.randomlyGeneratedNameButton.Size = new System.Drawing.Size(106, 100);
             this.randomlyGeneratedNameButton.TabIndex = 31;
             this.randomlyGeneratedNameButton.Text = "Generate";
             this.randomlyGeneratedNameButton.UseVisualStyleBackColor = false;
@@ -149,7 +149,7 @@
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(499, 2);
+            this.exitButton.Location = new System.Drawing.Point(535, 2);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(27, 24);
             this.exitButton.TabIndex = 36;
@@ -165,7 +165,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(529, 29);
+            this.panel1.Size = new System.Drawing.Size(530, 29);
             this.panel1.TabIndex = 37;
             // 
             // label1
@@ -181,8 +181,8 @@
             // 
             // nameSpecificationsGroupBox
             // 
-            this.nameSpecificationsGroupBox.Controls.Add(this.comboBox1);
-            this.nameSpecificationsGroupBox.Controls.Add(this.honorificLabel);
+            this.nameSpecificationsGroupBox.Controls.Add(this.availableHonorifics);
+            this.nameSpecificationsGroupBox.Controls.Add(this.honorificTypeLabel);
             this.nameSpecificationsGroupBox.Controls.Add(this.nameNationalityLabel);
             this.nameSpecificationsGroupBox.Controls.Add(this.honorificComboBox);
             this.nameSpecificationsGroupBox.Controls.Add(this.nationalitiesDropDox);
@@ -194,16 +194,25 @@
             this.nameSpecificationsGroupBox.TabStop = false;
             this.nameSpecificationsGroupBox.Text = "Name Specifications";
             // 
-            // honorificComboBox
+            // availableHonorifics
             // 
-            this.honorificComboBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.honorificComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.honorificComboBox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.honorificComboBox.FormattingEnabled = true;
-            this.honorificComboBox.Location = new System.Drawing.Point(6, 49);
-            this.honorificComboBox.Name = "honorificComboBox";
-            this.honorificComboBox.Size = new System.Drawing.Size(148, 24);
-            this.honorificComboBox.TabIndex = 27;
+            this.availableHonorifics.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.availableHonorifics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.availableHonorifics.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableHonorifics.FormattingEnabled = true;
+            this.availableHonorifics.Location = new System.Drawing.Point(6, 79);
+            this.availableHonorifics.Name = "availableHonorifics";
+            this.availableHonorifics.Size = new System.Drawing.Size(148, 24);
+            this.availableHonorifics.TabIndex = 30;
+            // 
+            // honorificTypeLabel
+            // 
+            this.honorificTypeLabel.AutoSize = true;
+            this.honorificTypeLabel.Location = new System.Drawing.Point(160, 52);
+            this.honorificTypeLabel.Name = "honorificTypeLabel";
+            this.honorificTypeLabel.Size = new System.Drawing.Size(83, 16);
+            this.honorificTypeLabel.TabIndex = 29;
+            this.honorificTypeLabel.Text = "Honorific Type";
             // 
             // nameNationalityLabel
             // 
@@ -214,32 +223,24 @@
             this.nameNationalityLabel.TabIndex = 28;
             this.nameNationalityLabel.Text = "Name Nationality";
             // 
-            // honorificLabel
+            // honorificComboBox
             // 
-            this.honorificLabel.AutoSize = true;
-            this.honorificLabel.Location = new System.Drawing.Point(160, 57);
-            this.honorificLabel.Name = "honorificLabel";
-            this.honorificLabel.Size = new System.Drawing.Size(54, 16);
-            this.honorificLabel.TabIndex = 29;
-            this.honorificLabel.Text = "Honorific";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 79);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(148, 24);
-            this.comboBox1.TabIndex = 30;
+            this.honorificComboBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.honorificComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.honorificComboBox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.honorificComboBox.FormattingEnabled = true;
+            this.honorificComboBox.Location = new System.Drawing.Point(6, 49);
+            this.honorificComboBox.Name = "honorificComboBox";
+            this.honorificComboBox.Size = new System.Drawing.Size(148, 24);
+            this.honorificComboBox.TabIndex = 27;
+            this.honorificComboBox.SelectedIndexChanged += new System.EventHandler(this.honorificComboBox_SelectedIndexChanged);
             // 
             // nameGeneratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(529, 215);
+            this.ClientSize = new System.Drawing.Size(530, 152);
             this.Controls.Add(this.nameSpecificationsGroupBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.nameGeneratedText);
@@ -277,8 +278,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox nameSpecificationsGroupBox;
         private System.Windows.Forms.ComboBox honorificComboBox;
-        private System.Windows.Forms.Label honorificLabel;
+        private System.Windows.Forms.Label honorificTypeLabel;
         private System.Windows.Forms.Label nameNationalityLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox availableHonorifics;
     }
 }

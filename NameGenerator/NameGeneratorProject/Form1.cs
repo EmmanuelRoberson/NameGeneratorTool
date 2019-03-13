@@ -14,6 +14,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using IntroToCSharp;
 using NameGeneratorProject.CustomNameGeneratorClasses;
+using NameGeneratorProject.Honorifics;
 
 namespace NameGeneratorProject
 {
@@ -23,6 +24,7 @@ namespace NameGeneratorProject
         public string nameGenerated;
         public RandomNameGenetator RandomNameBuilder;
         public NameGeneratorContainer nameGeneratorList;
+        public List<HonorificList> honorificListContainer;
 
         public nameGeneratorForm()
         {
@@ -40,14 +42,26 @@ namespace NameGeneratorProject
             nameGeneratorList.AddNameGenerator("JapaneseFirstnames.csv", "Japanese");
             nameGeneratorList.AddNameGenerator("FrenchFirstnames.csv", "French");
             nameGeneratorList.AddNameGenerator("RussianFirstnames.csv", "Russian");
-            nameGeneratorList.AddNameGenerator("AmericanFirstnames.csv", "American");
 
+            honorificListContainer = new List<HonorificList>();
+            honorificListContainer.Add(new HonorificList("AmericanHonorifics.csv","American"));
+            honorificListContainer.Add(new HonorificList("HispanicHonorifics.csv","Hispanic"));
+            honorificListContainer.Add(new HonorificList("JapaneseHonorifics.csv","Japanese"));
+            honorificListContainer.Add(new HonorificList("FrenchHonorifics.csv","French"));
+            honorificListContainer.Add(new HonorificList("RussianHonorifics.csv","Russian"));
 
 
             int i = 0;
             foreach (BasePresetName index in nameGeneratorList.GeneratorList)
             {
                 nationalitiesDropDox.Items.Add(nameGeneratorList.GeneratorList[i].GetNameType);
+                i++;
+            }
+
+            i = 0;
+            foreach (HonorificList honorificType in honorificListContainer)
+            {
+                honorificComboBox.Items.Add(honorificListContainer[i].GetHonorificType);
                 i++;
             }
         }
@@ -115,6 +129,7 @@ namespace NameGeneratorProject
                 if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
                 {
                     nameGenerated = nameGenerator.MaleName;
+                    AddHonorific(sender, e);
                     nameGeneratedText.Text = nameGenerated;
                 }
             }
@@ -127,6 +142,7 @@ namespace NameGeneratorProject
                 if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
                 {
                     nameGenerated = nameGenerator.FemaleName;
+                    AddHonorific(sender, e);
                     nameGeneratedText.Text = nameGenerated;
                 }
             }
@@ -142,6 +158,7 @@ namespace NameGeneratorProject
                     {
                         JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
                         nameGenerated = japaneseNameBuilder.GenerateName;
+                        AddHonorific(sender, e);
                         nameGeneratedText.Text = nameGenerated;
                     }
                 }
@@ -152,6 +169,7 @@ namespace NameGeneratorProject
         private void randomlyGeneratedNameButton_Click(object sender, EventArgs e)
         {
             nameGenerated = RandomNameBuilder.GenerateName();
+            AddHonorific(sender, e);
             nameGeneratedText.Text = nameGenerated;
         }
 
@@ -178,6 +196,35 @@ namespace NameGeneratorProject
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void honorificComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            availableHonorifics.Items.Clear();
+            foreach (var honorificList in honorificListContainer)
+            {
+                if ((string)honorificComboBox.SelectedItem == honorificList.GetHonorificType)
+                {
+                    for (int i = 0; i < honorificList.GetHonorificList.Count; i++)
+                    {
+                        availableHonorifics.Items.Add(honorificList.GetHonorificList[i]);
+                    }
+                }
+            }
+
+            availableHonorifics.SelectedItem = availableHonorifics.Items[0];
+        }
+
+        private void AddHonorific(object sender, EventArgs e)
+        {
+            if ((string)honorificComboBox.SelectedItem == "Japanese")
+            {
+                nameGenerated += (string) availableHonorifics.SelectedItem;
+            }
+                else
+            {
+                nameGenerated = (string)availableHonorifics.SelectedItem + " " + nameGenerated;
+            }
         }
     }
 }

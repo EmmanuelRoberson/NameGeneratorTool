@@ -10,6 +10,7 @@ namespace NameGeneratorProject
         protected List<string> maleFirstNames;
         protected List<string> femaleFirstNames;
         protected List<string> lastNames;
+        protected List<string> honorifics;
 
         protected Random rand;
 
@@ -21,10 +22,10 @@ namespace NameGeneratorProject
 
             rand = new Random(DateTime.Now.Millisecond);
 
-            InitializeNames(fileName);
+            InitializeFirstNames(fileName);
         }
 
-        protected void InitializeNames(string fileName)
+        protected void InitializeFirstNames(string fileName)
         {
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
             TextFieldParser cvsParser = new TextFieldParser(filepath);
@@ -39,6 +40,40 @@ namespace NameGeneratorProject
                 //cvs file must be formatted like:: [index 0],name,[index 2],name2
                 maleFirstNames.Add(lineFields[1]);
                 femaleFirstNames.Add(lineFields[3]);
+            }
+        }
+
+        protected void InitializeLastNames(string fileName)
+        {
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            TextFieldParser cvsParser = new TextFieldParser(filepath);
+
+            cvsParser.SetDelimiters(",");
+
+            while (!cvsParser.EndOfData)
+            {
+                // reads the line, assigns the fields, then moves it to th next line
+                string[] lineFields = cvsParser.ReadFields();
+
+                //cvs file must be formatted like:: [index 0],name,[index 2],name2
+                lastNames.Add(lineFields[1]);
+            }
+        }
+
+        protected void InitializeHonorifics(string fileName)
+        {
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            TextFieldParser cvsParser = new TextFieldParser(filepath);
+
+            cvsParser.SetDelimiters(",");
+
+            while (!cvsParser.EndOfData)
+            {
+                // reads the line, assigns the fields, then moves it to th next line
+                string[] lineFields = cvsParser.ReadFields();
+
+                //cvs file must be formatted like:: [index 0],name,[index 2],name2
+                honorifics.Add(lineFields[1]);
             }
         }
 
