@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
-namespace NameGeneratorProject
+namespace NameGeneratorProject.CustomNameGeneratorClasses
 {
-    public class JapaneseNameBuilder : BasePresetName
+    class JapaneseNameBuilder
     {
-        private List<string> syllables;
-
+        protected List<string> syllables;
+        private Random rand;
         public JapaneseNameBuilder(string fileName)
         {
-            maleFirstNames = new List<string>(100);
-            femaleFirstNames = new List<string>(100);
-            lastNames = new List<string>(100);
-
-            syllables = new List<string>(46);
+            syllables = new List<string>();
 
             rand = new Random(DateTime.Now.Millisecond);
 
-            InitializeNames(fileName);
+            SetSyllables(fileName);
         }
 
-        public void SetSyllables(string fileName)
+        void SetSyllables(string fileName)
         {
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
             TextFieldParser cvsParser = new TextFieldParser(filepath);
@@ -34,7 +33,7 @@ namespace NameGeneratorProject
                 // reads the line, assigns the fields, then moves it to th next line
                 string[] lineFields = cvsParser.ReadFields();
 
-                syllables.Add(lineFields[0]);
+                syllables.Add(lineFields[1]);
             }
         }
 
@@ -42,18 +41,17 @@ namespace NameGeneratorProject
         {
             get
             {
-                string name = syllables[rand.Next(0, 46)];
-
-                //this right here makes the first letter capitalized
-                name = char.ToUpper(name[0]) + name.Substring(1);
-
-                for (int i = 0; i <= rand.Next(0, 3); i++)
+                string name = "";
+                for (int i = 0; i < rand.Next(1, 5); i++)
                 {
-                    name += syllables[rand.Next(0, 46)];
+                    name += syllables[rand.Next(0, syllables.Count)];
                 }
 
+                //capitalizes the first letter
+                name = char.ToUpper(name[0]) + name.Substring(1);
                 return name;
             }
         }
+
     }
 }

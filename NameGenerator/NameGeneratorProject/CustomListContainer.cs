@@ -7,48 +7,44 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
+
 namespace NameGeneratorProject
 {    
     class CustomListContainer : IConvertToListable
     {
-        private List<List<object>>[] list;
+        private List<List<string>> list;
 
-        CustomListContainer(string[] fileNames, object type)
+        CustomListContainer()
         {
-            list = new List<List<object>>[fileNames.Length];
+            list = new List<List<string>>();
         }
 
-        public void InitializeLists(string[] fileNames)
+        public void InitializeList(string fileName)
         {
-            //each element(i) in fileNames will represent a different file
-            for (int fileIndex = 0; fileIndex < fileNames.Length; fileIndex++)
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            TextFieldParser cvsParser = new TextFieldParser(filepath);
+
+            cvsParser.SetDelimiters(",");
+
+            while (!cvsParser.EndOfData)
             {
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileNames[fileIndex]);
-                TextFieldParser cvsParser = new TextFieldParser(filepath);
+                int lineInTheFile = 0;
 
-                cvsParser.SetDelimiters(",");
-
-                while (!cvsParser.EndOfData)
                 {
+                    //reads each line in the file
+                    string[] arrayOfFieldsInLine = cvsParser.ReadFields();
 
-                    int lineInTheFile = 0;
-
+                    //assignment of data
+                    for (int fieldInTheLine = 0; fieldInTheLine < arrayOfFieldsInLine.Length; fieldInTheLine++)
                     {
-                        //reads each line in the file
-                        object[] lineFields = cvsParser.ReadFields();
-
-                        //assignment of data
-                        for (int fieldInTheLine = 0; fieldInTheLine < lineFields.Length; fieldInTheLine++)
-                        {
-                            list[fileIndex][lineInTheFile][fieldInTheLine] = lineFields[fieldInTheLine];
-                        }
+                        list[lineInTheFile][fieldInTheLine] = arrayOfFieldsInLine[fieldInTheLine];
                     }
-
-                    lineInTheFile++;
                 }
-            }
-        }
 
-        public List<List<object>>[] BaseList => list;
+                lineInTheFile++;
+            }
+
+        }
+        public List<List<string>> BaseList => list;
     }
 }
