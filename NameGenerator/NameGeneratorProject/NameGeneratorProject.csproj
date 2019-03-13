@@ -59,7 +59,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HonorificList.cs" />
+    <Compile Include="Honorifics\HonorificList.cs" />
     <Compile Include="Interfaces\IConvertToListable.cs" />
     <Compile Include="Interfaces\IBaseNameBuildable.cs" />
     <Compile Include="Interfaces\IPrependable.cs" />
