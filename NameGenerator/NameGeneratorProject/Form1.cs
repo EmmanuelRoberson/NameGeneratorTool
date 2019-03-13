@@ -42,6 +42,8 @@ namespace NameGeneratorProject
             nameGeneratorList.AddNameGenerator("RussianFirstnames.csv", "Russian");
             nameGeneratorList.AddNameGenerator("AmericanFirstnames.csv", "American");
 
+
+
             int i = 0;
             foreach (BasePresetName index in nameGeneratorList.GeneratorList)
             {
@@ -65,22 +67,13 @@ namespace NameGeneratorProject
 
         }
 
-        //GENERATE NAME
-        private void button1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             japaneseNameGeneratorButton.Visible = false;
         }
 
         //[No Name Generated]
-        private void nameGeneratedButton_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -114,7 +107,7 @@ namespace NameGeneratorProject
             if ((string) nationalitiesDropDox.SelectedItem == "Randomly Generated")
             {
                 nameGenerated = RandomNameBuilder.GenerateName();
-                nameGeneratedButton.Text = nameGenerated;
+                nameGeneratedText.Text = nameGenerated;
             }
 
             foreach (BasePresetName nameGenerator in nameGeneratorList.GeneratorList)
@@ -122,7 +115,7 @@ namespace NameGeneratorProject
                 if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
                 {
                     nameGenerated = nameGenerator.MaleName;
-                    nameGeneratedButton.Text = nameGenerated;
+                    nameGeneratedText.Text = nameGenerated;
                 }
             }
         }
@@ -134,7 +127,7 @@ namespace NameGeneratorProject
                 if (nameGenerator.GetNameType == (string)nationalitiesDropDox.SelectedItem)
                 {
                     nameGenerated = nameGenerator.FemaleName;
-                    nameGeneratedButton.Text = nameGenerated;
+                    nameGeneratedText.Text = nameGenerated;
                 }
             }
         }
@@ -149,21 +142,42 @@ namespace NameGeneratorProject
                     {
                         JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
                         nameGenerated = japaneseNameBuilder.GenerateName;
-                        nameGeneratedButton.Text = nameGenerated;
+                        nameGeneratedText.Text = nameGenerated;
                     }
                 }
             }
         }
 
-        private void honorificTypeDropdownBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //honorificTypeDropdownBox.Items;
-        }
 
         private void randomlyGeneratedNameButton_Click(object sender, EventArgs e)
         {
             nameGenerated = RandomNameBuilder.GenerateName();
-            nameGeneratedButton.Text = nameGenerated;
+            nameGeneratedText.Text = nameGenerated;
+        }
+
+        private void nameGeneratedText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        Point lastPoint;
+        private void nameGeneratorForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void nameGeneratorForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
+
 namespace NameGeneratorProject
 {    
     class CustomListContainer : IConvertToListable
@@ -18,10 +19,8 @@ namespace NameGeneratorProject
             list = new List<List<string>>();
         }
 
-        public void InitializeLists(string fileName)
+        public void InitializeList(string fileName)
         {
-            //each element(i) in fileName will represent a different file
-
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
             TextFieldParser cvsParser = new TextFieldParser(filepath);
 
@@ -29,17 +28,16 @@ namespace NameGeneratorProject
 
             while (!cvsParser.EndOfData)
             {
-
                 int lineInTheFile = 0;
 
                 {
                     //reads each line in the file
-                    object[] lineFields = cvsParser.ReadFields();
+                    string[] arrayOfFieldsInLine = cvsParser.ReadFields();
 
                     //assignment of data
-                    for (int fieldInTheLine = 0; fieldInTheLine < lineFields.Length; fieldInTheLine++)
+                    for (int fieldInTheLine = 0; fieldInTheLine < arrayOfFieldsInLine.Length; fieldInTheLine++)
                     {
-                        list[fileIndex][lineInTheFile][fieldInTheLine] = lineFields[fieldInTheLine];
+                        list[lineInTheFile][fieldInTheLine] = arrayOfFieldsInLine[fieldInTheLine];
                     }
                 }
 
@@ -47,7 +45,6 @@ namespace NameGeneratorProject
             }
 
         }
-
-        public List<List<object>>[] BaseList => list;
+        public List<List<string>> BaseList => list;
     }
 }
