@@ -17,21 +17,21 @@ namespace IntroToCSharp
             if (index < 18)
                 str = str.ToLower();
 
-            if (Prepend[index].EndsWith("a")
-                || Prepend[index].EndsWith("e")
-                || Prepend[index].EndsWith("i")
-                || Prepend[index].EndsWith("o")
-                || Prepend[index].EndsWith("u")
-                || Prepend[index].EndsWith("y"))
+            if (PrependStrings[index].EndsWith("a")
+                || PrependStrings[index].EndsWith("e")
+                || PrependStrings[index].EndsWith("i")
+                || PrependStrings[index].EndsWith("o")
+                || PrependStrings[index].EndsWith("u")
+                || PrependStrings[index].EndsWith("y"))
             {
-                BaseNameBuilder bridgeVowelToConants = new BaseNameBuilder();
+                AlternatingNameBuilder bridgeVowelToConants = new AlternatingNameBuilder();
                 str = bridgeVowelToConants.RandConsonant + str;
             }
 
-            str = Prepend[index] + str;
+            str = PrependStrings[index] + str;
         }
 
-        public string[] Prepend { get; set; } =
+        public string[] PrependStrings { get; set; } =
         {
             "Wes", "Ka", "Yu", "Mc",
             "Ta", "Jam", "Con",

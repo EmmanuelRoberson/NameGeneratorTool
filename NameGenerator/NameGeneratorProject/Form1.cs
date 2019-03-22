@@ -30,19 +30,24 @@ namespace NameGeneratorProject
             InitializeComponent();
             RandomNameBuilder = new RandomNameGenetator
             {
-                nameBuilder = new BaseNameBuilder(),
+                nameBuilder = new AlternatingNameBuilder(),
                 prefixes = new PrependList(),
                 suffixes = new AppendList()
             };
 
             //ToDo:: namegeneratorcontainer to have a constructor for multiple instances
-            
-            nameGeneratorList = new NameGeneratorContainer();
-            nameGeneratorList.AddNameGenerator("AmericanFirstnames.csv", "American");
-            nameGeneratorList.AddNameGenerator("HispanicFirstnames.csv", "Hispanic");
-            nameGeneratorList.AddNameGenerator("JapaneseFirstnames.csv", "Japanese");
-            nameGeneratorList.AddNameGenerator("FrenchFirstnames.csv", "French");
-            nameGeneratorList.AddNameGenerator("RussianFirstnames.csv", "Russian");
+            //ToDo:: Done
+            nameGeneratorList = new NameGeneratorContainer
+            {
+                basePresetNameList = new List<BasePresetName>
+                {
+                    new BasePresetName("AmericanFirstnames.csv"){NameType = "American"},
+                    new BasePresetName("HispanicFirstnames.csv"){NameType = "Hispanic"},
+                    new BasePresetName("JapaneseFIrstnames.csv"){NameType = "Japanese"},
+                    new BasePresetName("FrenchFirstnames.csv"){NameType = "French"},
+                    new BasePresetName("RussianFirstnames.csv"){NameType = "Russian"},
+                }
+            };
 
             honorificListContainer = new List<HonorificList>
             {
@@ -55,9 +60,9 @@ namespace NameGeneratorProject
 
 
             int i = 0;
-            foreach (BasePresetName index in nameGeneratorList.GeneratorList)
+            foreach (BasePresetName index in nameGeneratorList.List)
             {
-                nationalitiesDropDox.Items.Add(nameGeneratorList.GeneratorList[i].GetNameType);
+                nationalitiesDropDox.Items.Add(nameGeneratorList.List[i].NameType);
                 i++;
             }
 
@@ -68,7 +73,13 @@ namespace NameGeneratorProject
                 i++;
             }
 
-            exitButton.Show();
+            {
+                zeroIsRandomLengthLabel.Hide();
+                nameLenghNumericUpDown.Hide();
+                nameLengthLabel.Hide();
+            }
+
+            listOfGeneratedNamesRichTextBox.Multiline = true;
         }
 
         //Save Name
@@ -99,6 +110,18 @@ namespace NameGeneratorProject
 
         private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if ((string)nationalitiesDropDox.SelectedItem == "Randomly Generated")
+            {
+                zeroIsRandomLengthLabel.Show();
+                nameLenghNumericUpDown.Show();
+                nameLengthLabel.Show();
+            }
+            else
+            {
+                zeroIsRandomLengthLabel.Hide();
+                nameLenghNumericUpDown.Hide();
+                nameLengthLabel.Hide();
+            }
         }
 
         private void nameGeneratedText_TextChanged(object sender, EventArgs e)
@@ -201,21 +224,21 @@ namespace NameGeneratorProject
         {
             if (
                 (string)nationalitiesDropDox.SelectedItem == "Japanese" && 
-                genderComboBox.SelectedText != "Male" &&
-                genderComboBox.SelectedText != "Female")
+                (string)genderComboBox.SelectedItem != "Male" &&
+                (string)genderComboBox.SelectedItem != "Female")
             {
                 JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
                 nameGenerated = japaneseNameBuilder.GenerateName;
             }
             else if ((string)nationalitiesDropDox.SelectedItem == "Randomly Generated")
             {
-                nameGenerated = RandomNameBuilder.GenerateName();
+                nameGenerated = RandomNameBuilder.GenerateName((int)nameLenghNumericUpDown.Value);
             }
             else
             { 
-                foreach (var generatorType in nameGeneratorList.GeneratorList)
+                foreach (var generatorType in nameGeneratorList.List)
                 {
-                    if ((string)nationalitiesDropDox.SelectedItem == generatorType.GetNameType)
+                    if ((string)nationalitiesDropDox.SelectedItem == generatorType.NameType)
                     {
                         nameGenerated =
                             ((string)genderComboBox.SelectedItem == "Male")
@@ -227,6 +250,72 @@ namespace NameGeneratorProject
 
             AddHonorific(sender, e);
             nameGeneratedText.Text = nameGenerated;
+        }
+
+        private void nameLenghNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (nameLenghNumericUpDown.Value < 0)
+                nameLenghNumericUpDown.Value = 0;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToNamesGeneratedButton_Click(object sender, EventArgs e)
+        {
+            listOfGeneratedNamesRichTextBox.Text += nameGenerated + '\n';
+        }
+
+        private void listOfGeneratedNamesRichTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void generateNameListButton_Click(object sender, EventArgs e)
+        {
+            List<string> classConditionsMet = new List<string>();
+            List<string> honorificConditionsMet = new List<string>();
+
+            int totalNamesGenerated = (int)numberOfNamesGeneratedNumericUpDown.Value;
+
+            foreach (Control option in nameClassCheckBoxList.Controls)
+            {
+                if (option is CheckBox)
+                {
+                    CheckBox chkBox = (CheckBox)option;
+                    if (chkBox.Checked)
+                    {
+                        classConditionsMet.Add(chkBox.Text);
+                    }
+                }
+            }
+            foreach (Control option in honorificCheckBoxList.Controls)
+            {
+                if (option is CheckBox)
+                {
+                    CheckBox chkBox = (CheckBox)option;
+                    if (chkBox.Checked)
+                    {
+                        honorificConditionsMet.Add(chkBox.Text);
+                    }
+                }
+            }
+
+            foreach (var classType in classConditionsMet)
+            {
+                foreach (var generatorType in nameGeneratorList.List)
+                {
+                    //todo: iterate and check to see if the conditions meet the generator type, and generate a name based on it
+                    //if()
+                    //nameGenerated =
+                    //    ((string)genderComboBox.SelectedItem == "Male")
+                    //        ? generatorType.MaleName
+                    //        : generatorType.FemaleName;
+                }
+            }
+
         }
     }
 }

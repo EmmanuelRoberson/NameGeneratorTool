@@ -10,7 +10,6 @@ namespace IntroToCSharp
     {
         void AppendTo(ref string str);
 
-        string[] Append{ get; set; }
+        string[] AppendStrings{ get; set; }
     }
-
 }

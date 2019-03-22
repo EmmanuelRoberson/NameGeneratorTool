@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseNameBuilder.cs" />
+    <Compile Include="AbstractNameBuilder.cs" />
+    <Compile Include="AlternatingWholeNameBuilder.cs" />
+    <Compile Include="AlternatingNameBuilder.cs" />
     <Compile Include="BasePresetName.cs" />
     <Compile Include="CustomListContainer.cs" />
     <Compile Include="CustomNameGeneratorClasses\JapaneseNameBuilder.cs" />
@@ -63,11 +65,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Honorifics\HonorificList.cs" />
+    <Compile Include="Interface Implementations\AlternatingBaseNameBuilder.cs" />
     <Compile Include="Interfaces\IConvertToListable.cs" />
     <Compile Include="Interfaces\IBaseNameBuildable.cs" />
     <Compile Include="Interfaces\IPrependable.cs" />
     <Compile Include="Interfaces\IAppendable.cs" />
     <Compile Include="Interfaces\ITestInterface.cs" />
+    <Compile Include="Letter.cs" />
     <Compile Include="NameGeneratorContainer.cs" />
     <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrependList.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppendList.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="Word.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
