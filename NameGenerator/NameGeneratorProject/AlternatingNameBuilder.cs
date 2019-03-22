@@ -1,22 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IntroToCSharp
 {
-    public class BaseNameBuilder : IBaseNameBuildable
+    public class AlternatingNameBuilder : IBaseNameBuildable
     {
-
-        private string[] consonants = new string[157];
-        private string[] vowels = new string[103];
+        private List<string> consonants = new List<string>();
+        private List<string> vowels = new List<string>();
 
         Random rand = new Random(DateTime.Now.Millisecond);
 
         //reference: https://docs.google.com/spreadsheets/d/1K0wAiYK7E9vOz3iQrcHnCfab6TBLh7GnjLx6tlPvZI0/edit?usp=sharing
-        public BaseNameBuilder()
+        public AlternatingNameBuilder()
         {
             int consonantIndexesFilled = 0;
             int vowelIndexesFilled = 0;
             // loops with more than one assignment operations have letters the same frequency
 
+            //todo: put all the letters in a csv file(vowels are the first column, consonants are second)
             //vowel assignments
             {
                 for (int i = vowelIndexesFilled; i < vowelIndexesFilled + 33; i++)
@@ -152,35 +153,36 @@ namespace IntroToCSharp
 
         public string RandConsonant
         {
-            get { return consonants[rand.Next(0, consonants.Length)]; }
+            get { return consonants[rand.Next(0, consonants.Count)]; }
         }
 
         public string RandVowel
         {
-            get { return vowels[rand.Next(0, vowels.Length)]; }
+            get { return vowels[rand.Next(0, vowels.Count)]; }
         }
 
         string IBaseNameBuildable.GenerateBaseName(int length)
         {
 
-            string baseName;
+            string baseName = null;
 
-            int consonant = rand.Next(0, consonants.Length);
+            int consonant = rand.Next(0, consonants.Count);
 
-            int vowel = rand.Next(0, vowels.Length);
+            int vowel = rand.Next(0, vowels.Count);
 
-            //initializes baseName with wither a vowel or consonant
-            baseName = (length % 2 == 0) ?
-                consonants[consonant].ToUpper() :
-                vowels[vowel].ToUpper();
-
-            //i is set to length % 2 so it will follow it up with the alternate type of letterToBePaired
-            for (int i = length % 2; i < length; i++)
+            //j is initialized as well as i so we can name the name alternate between vowel and consonant
+            for (int i = rand.Next(0, 2), j = i; i < length + j; i++)
             {
-                consonant = rand.Next(0, consonants.Length);
-                vowel = rand.Next(0, vowels.Length);
+                if (baseName == null)
+                {
+                    baseName = (j % 2 == 0) ? consonants[consonant].ToUpper() : vowels[vowel].ToUpper();
+                    continue;
+                }
 
-                baseName += (i % 2 != 0) ? consonants[consonant] : vowels[vowel];
+                consonant = rand.Next(0, consonants.Count);
+                vowel = rand.Next(0, vowels.Count);
+
+                baseName += (i % 2 == 0) ? consonants[consonant] : vowels[vowel];
             }
 
             return baseName;
@@ -198,7 +200,7 @@ namespace IntroToCSharp
                 {
                     if (letterToBePaired == vowel)
                     {
-                        int vowelsIndex = rand.Next(0, vowels.Length);
+                        int vowelsIndex = rand.Next(0, vowels.Count);
                         letterToBePaired += vowelsIndex;
                         return letterToBePaired;
                     }

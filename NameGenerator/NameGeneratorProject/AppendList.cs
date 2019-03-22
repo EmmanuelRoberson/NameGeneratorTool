@@ -13,10 +13,10 @@ namespace IntroToCSharp
         {
             int suffixIndex = rand.Next(0, 30);
 
-            str += Append[suffixIndex];
+            str += AppendStrings[suffixIndex];
         }
 
-        public string[] Append { get; set; } =
+        public string[] AppendStrings { get; set; } =
         {
             "o", "dule", "ster","son",
             "ard", "iams", "s",

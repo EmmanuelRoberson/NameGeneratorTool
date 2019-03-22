@@ -10,6 +10,6 @@ namespace IntroToCSharp
     {
         void PrependTo(ref string str);
 
-        string[] Prepend { get; set; }
+        string[] PrependStrings { get; set; }
     }
 }

@@ -26,21 +26,28 @@ namespace IntroToCSharp
             }
         }
 
-        public string GenerateName()
+        public string GenerateName(int length)
         {
+            if (length == 0)
+            {
+                nameLength = rand.Next(1, 8);
 
-            nameLength = rand.Next(1, 8);
+                //generates the base name
+                Name = nameBuilder.GenerateBaseName(nameLength);
 
-            //generates the base name
-            Name = nameBuilder.GenerateBaseName(nameLength);
+                ////adds the prefix
+                //prefixes.PrependTo(ref _name);
 
-            ////adds the prefix
-            //prefixes.PrependTo(ref _name);
+                ////adds the suffix
+                //suffixes.AppendTo(ref _name);
 
-            ////adds the suffix
-            //suffixes.AppendTo(ref _name);
-
-            return Name;
+                return Name;
+            }
+            else
+            {
+                Name = nameBuilder.GenerateBaseName(length);
+                return Name;
+            }
         }
     }
 }

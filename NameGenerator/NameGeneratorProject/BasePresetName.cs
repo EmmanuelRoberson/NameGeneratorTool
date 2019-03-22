@@ -84,6 +84,6 @@ namespace NameGeneratorProject
         public string FemaleName => femaleFirstNames[rand.Next(0, femaleFirstNames.Count)];
 
         //keeps track of the type of each name
-        public string GetNameType { get; set; }
+        public string NameType { get; set; }
     }
 }

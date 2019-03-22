@@ -4,28 +4,34 @@ namespace NameGeneratorProject
 {
     public class NameGeneratorContainer
     {
-        private List<BasePresetName> nameGeneratorList;
+
+        public NameGeneratorContainer()
+        {
+
+        }
+
+        public List<BasePresetName> basePresetNameList;
 
         public string GetNameType(string typeOfName)
         {
-            foreach (BasePresetName name in nameGeneratorList)
+            foreach (BasePresetName name in basePresetNameList)
             {
-                if (name.GetNameType == typeOfName)
-                    return name.GetNameType;
+                if (name.NameType == typeOfName)
+                    return name.NameType;
             }
             return "TYPE OF NAME NOT FOUND";
         }
 
         public void AddNameGenerator(string fileName, string nameType)
         {
-            if (nameGeneratorList == null)
-                nameGeneratorList = new List<BasePresetName>();
+            if (basePresetNameList == null)
+                basePresetNameList = new List<BasePresetName>();
 
-            nameGeneratorList.Add(new BasePresetName(fileName)
-                { GetNameType = nameType});
+            basePresetNameList.Add(new BasePresetName(fileName)
+                { NameType = nameType});
         }
 
         //returns the list of NameGenerators
-        public List<BasePresetName> GeneratorList => nameGeneratorList;
+        public List<BasePresetName> List => basePresetNameList;
     }
 }
