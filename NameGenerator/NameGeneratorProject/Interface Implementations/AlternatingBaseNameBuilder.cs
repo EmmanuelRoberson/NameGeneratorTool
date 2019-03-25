@@ -6,34 +6,49 @@ namespace NameGeneratorProject.Interface_Implementations
 {
     public class AlternatingBaseNameBuilder: IBaseNameBuildable
     {
-
-        protected List<string> vowelList;
-        protected List<string> consonantList;
+        private List<string> vowelList;
+        private List<string> consonantList;
 
         private Random rand;
+
+        public AlternatingBaseNameBuilder()
+        {
+            vowelList = new List<string>();
+            consonantList = new List<string>();
+            Utilities.ReadCSV("LetterClassifications.csv", consonantList, vowelList);
+            rand = new Random(DateTime.Now.Millisecond);
+        }
+       
         public string GenerateBaseName(int length)
         {
-            string baseName = null;
+            if (length == 0)
+            {
+                length = rand.Next(1, 9);
+            }
 
-            int consonant = rand.Next(0, consonantList.Count);
+            Word baseName = new Word();
 
-            int vowel = rand.Next(0, vowelList.Count);
+            var consonantIndex = rand.Next(0, consonantList.Count);
+            var vowelIndex = rand.Next(0, vowelList.Count);
 
             //j is initialized as well as i so we can name the name alternate between vowel and consonant
             for (int i = rand.Next(0, 2), j = i; i < length + j; i++)
             {
-                if (baseName == null)
+                if (baseName.IsEmpty())
                 {
-                    baseName = (j % 2 == 0) ? consonantList[consonant].ToUpper() : vowelList[vowel].ToUpper();
+                    var firstLetter = (j % 2 == 0) ? consonantList[consonantIndex].ToUpper() : vowelList[vowelIndex].ToUpper();
+                    baseName.AddAtBeginning(firstLetter);
                     continue;
                 }
-                consonant = rand.Next(0, consonantList.Count);
-                vowel = rand.Next(0, vowelList.Count);
+                consonantIndex = rand.Next(0, consonantList.Count);
+                vowelIndex = rand.Next(0, vowelList.Count);
 
-                baseName += (i % 2 == 0) ? consonantList[consonant] : vowelList[vowel];
+                string letter = (i % 2 == 0) ? consonantList[consonantIndex] : vowelList[vowelIndex];
+
+                baseName.AddAtEnd(letter);
             }
 
-            return baseName;
+            return baseName.Value;
         }
     }
 }

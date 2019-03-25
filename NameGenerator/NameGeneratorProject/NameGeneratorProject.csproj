@@ -53,8 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractNameBuilder.cs" />
-    <Compile Include="AlternatingWholeNameBuilder.cs" />
-    <Compile Include="AlternatingNameBuilder.cs" />
+    <Compile Include="Alternating String Classes\AlternatingWholeNameBuilder.cs" />
+    <Compile Include="Alternating String Classes\DeleteLater.cs" />
     <Compile Include="BasePresetName.cs" />
     <Compile Include="CustomListContainer.cs" />
     <Compile Include="CustomNameGeneratorClasses\JapaneseNameBuilder.cs" />
@@ -71,15 +71,15 @@
     <Compile Include="Interfaces\IPrependable.cs" />
     <Compile Include="Interfaces\IAppendable.cs" />
     <Compile Include="Interfaces\ITestInterface.cs" />
-    <Compile Include="Letter.cs" />
+    <Compile Include="Helpful Classes\Letter.cs" />
     <Compile Include="NameGeneratorContainer.cs" />
     <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrependList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AppendList.cs" />
-    <Compile Include="Utilities.cs" />
-    <Compile Include="Word.cs" />
+    <Compile Include="Helpful Classes\Utilities.cs" />
+    <Compile Include="Helpful Classes\Word.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(nameGeneratorForm));
             this.nationalitiesDropDox = new System.Windows.Forms.ComboBox();
             this.nameGeneratedText = new System.Windows.Forms.TextBox();
@@ -36,7 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nameSpecificationsGroupBox = new System.Windows.Forms.GroupBox();
             this.addToListOfNamesButton = new System.Windows.Forms.Button();
-            this.zeroIsRandomLengthLabel = new System.Windows.Forms.Label();
             this.nameLenghNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.generateNameButton = new System.Windows.Forms.Button();
             this.nameLengthLabel = new System.Windows.Forms.Label();
@@ -69,6 +69,7 @@
             this.listOfGeneratedNamesRichTextBox = new System.Windows.Forms.RichTextBox();
             this.namesGeneratedGroupBox = new System.Windows.Forms.GroupBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.nameLengthToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.nameSpecificationsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nameLenghNumericUpDown)).BeginInit();
@@ -156,7 +157,6 @@
             // 
             this.nameSpecificationsGroupBox.Controls.Add(this.addToListOfNamesButton);
             this.nameSpecificationsGroupBox.Controls.Add(this.nameGeneratedText);
-            this.nameSpecificationsGroupBox.Controls.Add(this.zeroIsRandomLengthLabel);
             this.nameSpecificationsGroupBox.Controls.Add(this.nameLenghNumericUpDown);
             this.nameSpecificationsGroupBox.Controls.Add(this.generateNameButton);
             this.nameSpecificationsGroupBox.Controls.Add(this.nameLengthLabel);
@@ -192,15 +192,6 @@
             this.addToListOfNamesButton.Text = "Add to Names Generated";
             this.addToListOfNamesButton.UseVisualStyleBackColor = false;
             this.addToListOfNamesButton.Click += new System.EventHandler(this.addToNamesGeneratedButton_Click);
-            // 
-            // zeroIsRandomLengthLabel
-            // 
-            this.zeroIsRandomLengthLabel.AutoSize = true;
-            this.zeroIsRandomLengthLabel.Location = new System.Drawing.Point(26, 139);
-            this.zeroIsRandomLengthLabel.Name = "zeroIsRandomLengthLabel";
-            this.zeroIsRandomLengthLabel.Size = new System.Drawing.Size(77, 17);
-            this.zeroIsRandomLengthLabel.TabIndex = 37;
-            this.zeroIsRandomLengthLabel.Text = "0 = Random";
             // 
             // nameLenghNumericUpDown
             // 
@@ -239,6 +230,8 @@
             this.nameLengthLabel.Size = new System.Drawing.Size(88, 17);
             this.nameLengthLabel.TabIndex = 35;
             this.nameLengthLabel.Text = "Name Length";
+            this.nameLengthToolTip.SetToolTip(this.nameLengthLabel, "Leave at 0 for a short to medium length name");
+            this.nameLengthLabel.Click += new System.EventHandler(this.nameLengthLabel_Click);
             // 
             // genderLabel
             // 
@@ -617,7 +610,6 @@
         private System.Windows.Forms.ComboBox genderComboBox;
         private System.Windows.Forms.Button generateNameButton;
         private System.Windows.Forms.Label nameLengthLabel;
-        private System.Windows.Forms.Label zeroIsRandomLengthLabel;
         private System.Windows.Forms.NumericUpDown nameLenghNumericUpDown;
         private System.Windows.Forms.ToolStrip utilitiesToolStrip;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
@@ -640,5 +632,6 @@
         private System.Windows.Forms.GroupBox honorificTypeIncludedGroup;
         private System.Windows.Forms.GroupBox genderIncludedGroup;
         private System.Windows.Forms.Button generateNameListButton;
+        private System.Windows.Forms.ToolTip nameLengthToolTip;
     }
 }
