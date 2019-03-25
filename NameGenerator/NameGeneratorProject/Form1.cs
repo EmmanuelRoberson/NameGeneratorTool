@@ -2,20 +2,11 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Xml;
 using IntroToCSharp;
 
 namespace NameGeneratorProject
 {
-    enum Nationalities
-    {
-        USA = 0,
-        HIS = 1,
-        JAP = 2,
-        FRE = 3,
-        RUS = 4,
-        TBA = 5
-    }
-
     public partial class nameGeneratorForm : Form
     {
 
@@ -64,6 +55,36 @@ namespace NameGeneratorProject
         private void nameGeneratedButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(string));
+
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), nameGenerated + ".xml");
+
+            TextWriter writer = new StreamWriter(nameGenerated + ".xml");
+
+            serializer.Serialize(writer, nameGenerated);
+            writer.Close();
+        }
+
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = Directory.GetCurrentDirectory();
+            ofd.ShowDialog();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(string));
+            XmlReader reader = new XmlTextReader(ofd.FileName);
+            nameGenerated = (string) serializer.Deserialize(reader);
+            reader.Close();
+            nameGeneratedButton.Text = nameGenerated;
         }
     }
 }
