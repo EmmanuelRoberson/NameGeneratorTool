@@ -214,7 +214,8 @@ namespace NameGeneratorProject
             }
 
             AddHonorific(sender, e);
-            nameGeneratedText.Text = nameGenerated;
+            namesGeneratedRichTextBox.Text = nameGenerated + '\n';
+            allNamesGeneratedRichTextBox.Text += nameGenerated + '\n';
         }
 
         private void nameLenghNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -286,6 +287,11 @@ namespace NameGeneratorProject
         private void nameLengthLabel_Click(object sender, EventArgs e)
         {
             //nameLengthLabel.
+        }
+
+        private void namesGeneratedGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
