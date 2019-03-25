@@ -62,7 +62,6 @@
             this.utilitiesToolStrip = new System.Windows.Forms.ToolStrip();
             this.fileButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -179,8 +178,8 @@
             // addToListOfNamesButton
             // 
             this.addToListOfNamesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.addToListOfNamesButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.addToListOfNamesButton.FlatAppearance.BorderSize = 0;
+            this.addToListOfNamesButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.addToListOfNamesButton.FlatAppearance.BorderSize = 2;
             this.addToListOfNamesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.addToListOfNamesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumSeaGreen;
             this.addToListOfNamesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -189,7 +188,7 @@
             this.addToListOfNamesButton.Name = "addToListOfNamesButton";
             this.addToListOfNamesButton.Size = new System.Drawing.Size(173, 45);
             this.addToListOfNamesButton.TabIndex = 38;
-            this.addToListOfNamesButton.Text = "Add to Names Generated";
+            this.addToListOfNamesButton.Text = "Add to List of Names";
             this.addToListOfNamesButton.UseVisualStyleBackColor = false;
             this.addToListOfNamesButton.Click += new System.EventHandler(this.addToNamesGeneratedButton_Click);
             // 
@@ -208,8 +207,8 @@
             // generateNameButton
             // 
             this.generateNameButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.generateNameButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.InfoText;
-            this.generateNameButton.FlatAppearance.BorderSize = 0;
+            this.generateNameButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.generateNameButton.FlatAppearance.BorderSize = 2;
             this.generateNameButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.generateNameButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.generateNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -474,7 +473,6 @@
             this.fileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
             this.openToolStripMenuItem});
             this.fileButton.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileButton.ImageTransparentColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -488,12 +486,6 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As..";
             // 
             // openToolStripMenuItem
             // 
@@ -615,7 +607,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripDropDownButton fileButton;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton helpToolStripDropDownButton;
         private System.Windows.Forms.RichTextBox listOfGeneratedNamesRichTextBox;
