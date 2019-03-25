@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseNameBuilder.cs" />
-    <Compile Include="BasePresetName.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
