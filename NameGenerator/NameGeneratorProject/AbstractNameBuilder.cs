@@ -9,6 +9,6 @@ namespace NameGeneratorProject
         protected IPrependable prepender;
         protected IAppendable appender;
 
-        public abstract string GenerateWholeName();
+        public abstract string GenerateWholeName(int baseNameLength);
     }
 }

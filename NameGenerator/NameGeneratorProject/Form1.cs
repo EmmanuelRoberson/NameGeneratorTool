@@ -21,19 +21,14 @@ namespace NameGeneratorProject
     public partial class nameGeneratorForm : Form
     {
         public string nameGenerated;
-        public RandomNameGenetator RandomNameBuilder;
+        public AbstractNameBuilder nameGenerator;
         public NameGeneratorContainer nameGeneratorList;
         public List<HonorificList> honorificListContainer;
 
         public nameGeneratorForm()
         {
             InitializeComponent();
-            RandomNameBuilder = new RandomNameGenetator
-            {
-                nameBuilder = new AlternatingNameBuilder(),
-                prefixes = new PrependList(),
-                suffixes = new AppendList()
-            };
+            nameGenerator = new AlternatingWholeNameBuilder();
 
             //ToDo:: namegeneratorcontainer to have a constructor for multiple instances
             //ToDo:: Done
@@ -74,31 +69,11 @@ namespace NameGeneratorProject
             }
 
             {
-                zeroIsRandomLengthLabel.Hide();
                 nameLenghNumericUpDown.Hide();
                 nameLengthLabel.Hide();
             }
 
             listOfGeneratedNamesRichTextBox.Multiline = true;
-        }
-
-        //Save Name
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-            XmlSerializer serializer = new XmlSerializer(typeof(string));
-
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "RandomlyGeneratedName.xml");
-
-            TextWriter writer = new StreamWriter("RandomlyGeneratedName.xml");
-
-            serializer.Serialize(writer, nameGenerated);
-
-            writer.Close();
-
-          //  Utilities.SaveXML("RandomlyGeneratedName.xml", nameGenerated);
-            Utilities.SaveJson("RandomlyGeneratedName.xml", nameGenerated);
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -112,13 +87,11 @@ namespace NameGeneratorProject
         {
             if ((string)nationalitiesDropDox.SelectedItem == "Randomly Generated")
             {
-                zeroIsRandomLengthLabel.Show();
                 nameLenghNumericUpDown.Show();
                 nameLengthLabel.Show();
             }
             else
             {
-                zeroIsRandomLengthLabel.Hide();
                 nameLenghNumericUpDown.Hide();
                 nameLengthLabel.Hide();
             }
@@ -207,17 +180,9 @@ namespace NameGeneratorProject
             }
         }
 
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void nameGeneratorTab_DrawItem(object sender, DrawItemEventArgs e)
         {
-            //for (int i = 0; i < nameGeneratorTab.TabCount; i++)
-            //{
-            //    e.Graphics.FillRectangle(new SolidBrush(Color.Salmon), e.Bounds);
-            //}
+
         }
 
         private void generateNameButton_Click(object sender, EventArgs e)
@@ -232,7 +197,7 @@ namespace NameGeneratorProject
             }
             else if ((string)nationalitiesDropDox.SelectedItem == "Randomly Generated")
             {
-                nameGenerated = RandomNameBuilder.GenerateName((int)nameLenghNumericUpDown.Value);
+                nameGenerated = nameGenerator.GenerateWholeName((int)nameLenghNumericUpDown.Value);
             }
             else
             { 
@@ -316,6 +281,11 @@ namespace NameGeneratorProject
                 }
             }
 
+        }
+
+        private void nameLengthLabel_Click(object sender, EventArgs e)
+        {
+            //nameLengthLabel.
         }
     }
 }

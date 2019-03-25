@@ -9,8 +9,8 @@ namespace NameGeneratorProject
     class Letter
     {
 
-        private List<string> consonants;
-        private List<string> vowels;
+        private List<string> consonants = new List<string>();
+        private List<string> vowels = new List<string>();
 
         public Letter()
         {
