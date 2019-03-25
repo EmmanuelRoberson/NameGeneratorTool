@@ -73,7 +73,6 @@
     <Compile Include="Interfaces\ITestInterface.cs" />
     <Compile Include="Helpful Classes\Letter.cs" />
     <Compile Include="NameGeneratorContainer.cs" />
-    <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrependList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
