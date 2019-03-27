@@ -21,6 +21,7 @@ namespace NameGeneratorProject.Interface_Implementations
        
         public string GenerateBaseName(int length)
         {
+
             if (length == 0)
             {
                 length = rand.Next(1, 9);
@@ -34,18 +35,19 @@ namespace NameGeneratorProject.Interface_Implementations
             //j is initialized as well as i so we can name the name alternate between vowel and consonant
             for (int i = rand.Next(0, 2), j = i; i < length + j; i++)
             {
+                rand = new Random(DateTime.Now.Millisecond);
                 if (baseName.IsEmpty())
                 {
                     var firstLetter = (j % 2 == 0) ? consonantList[consonantIndex].ToUpper() : vowelList[vowelIndex].ToUpper();
-                    baseName.AddAtBeginning(firstLetter);
+                    baseName.AddAtBeginning(firstLetter.ToUpper());
                     continue;
                 }
                 consonantIndex = rand.Next(0, consonantList.Count);
                 vowelIndex = rand.Next(0, vowelList.Count);
 
-                string letter = (i % 2 == 0) ? consonantList[consonantIndex] : vowelList[vowelIndex];
+                var letter = (i % 2 == 0) ? consonantList[consonantIndex] : vowelList[vowelIndex];
 
-                baseName.AddAtEnd(letter);
+                baseName.AddAtEnd(letter.ToLower());
             }
 
             return baseName.Value;
