@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace IntroToCSharp
 {
@@ -27,7 +26,7 @@ namespace IntroToCSharp
 
         public string GenerateName()
         {
-            Random rand = new Random();
+            Random rand = new Random(DateTime.Now.Millisecond);
 
             nameLength = rand.Next(1, 3);
 
