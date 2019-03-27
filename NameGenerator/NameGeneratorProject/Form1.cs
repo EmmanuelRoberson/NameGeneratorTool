@@ -14,6 +14,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using IntroToCSharp;
 using NameGeneratorProject.CustomNameGeneratorClasses;
+using NameGeneratorProject.Helpful_Classes;
 using NameGeneratorProject.Honorifics;
 
 namespace NameGeneratorProject
@@ -195,6 +196,7 @@ namespace NameGeneratorProject
 
         private void generateNameButton_Click(object sender, EventArgs e)
         {
+            JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
             namesGeneratedRichTextBox.Clear();
             for (int i = 0; i < amountOfNamesGeneratedNumericUpDown1.Value; i++)
             {
@@ -203,7 +205,7 @@ namespace NameGeneratorProject
                     (string) genderComboBox.SelectedItem != "Male" &&
                     (string) genderComboBox.SelectedItem != "Female")
                 {
-                    JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
+                    
                     nameGenerated = japaneseNameBuilder.GenerateName;
                 }
                 else if ((string) nationalitiesDropDox.SelectedItem == "Randomly Generated")
@@ -238,7 +240,11 @@ namespace NameGeneratorProject
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utilities.SaveJson(new NameListContainer
+            {
+                AllNamesGenerated = allNamesGeneratedRichTextBox.Text,
+                YourListNames = listOfGeneratedNamesRichTextBox.Text
+            }, "/name lists");
         }
 
         private void addToNamesGeneratedButton_Click(object sender, EventArgs e)
@@ -307,6 +313,22 @@ namespace NameGeneratorProject
         private void namesGeneratedGroupBox_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var loadedLists = Utilities.LoadJson("/name list");
+            listOfGeneratedNamesRichTextBox.Clear();
+            allNamesGeneratedRichTextBox.Clear();
+            foreach (var name in loadedLists.YourListNames)
+            {
+                listOfGeneratedNamesRichTextBox.Text += name;
+            }
+
+            foreach (var name in loadedLists.AllNamesGenerated)
+            {
+                allNamesGeneratedRichTextBox.Text += name;
+            }
         }
     }
 }

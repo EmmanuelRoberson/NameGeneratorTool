@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Microsoft.VisualBasic.FileIO;
+using NameGeneratorProject.Helpful_Classes;
 
 namespace NameGeneratorProject
 {
@@ -23,13 +24,23 @@ namespace NameGeneratorProject
             writer.Close();
         }
 
-        public static void SaveJson(string filename, string saveobject)
+        public static void SaveJson(object saveobject, string folders)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.InitialDirectory = Directory.GetCurrentDirectory();
+            sfd.InitialDirectory = Directory.GetCurrentDirectory() + folders;
             sfd.ShowDialog();
 
-            File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(saveobject));
+            File.WriteAllText(sfd.FileName + ".json", Newtonsoft.Json.JsonConvert.SerializeObject(saveobject));
+        }
+
+        public static NameListContainer LoadJson(params string[] folders)
+        {
+            OpenFileDialog ofd = new OpenFileDialog {InitialDirectory = Directory.GetCurrentDirectory() + folders};
+            ofd.ShowDialog();
+            var data = System.IO.File.ReadAllText(ofd.FileName);
+            var loadedFile = Newtonsoft.Json.JsonConvert.DeserializeObject<NameListContainer>(data);
+
+            return loadedFile;
         }
 
         public static void ReadCSV(string filename, params List<string>[] containers)
