@@ -64,6 +64,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpful Classes\NameListContainer.cs" />
     <Compile Include="Honorifics\HonorificList.cs" />
     <Compile Include="Interface Implementations\AlternatingBaseNameBuilder.cs" />
     <Compile Include="Interfaces\IConvertToListable.cs" />

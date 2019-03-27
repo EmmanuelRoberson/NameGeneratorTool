@@ -35,8 +35,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.nameSpecificationsGroupBox = new System.Windows.Forms.GroupBox();
+            this.numberOfNamesGeneratedLabel = new System.Windows.Forms.Label();
             this.namesGeneratedRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.amountGeneratedLabel = new System.Windows.Forms.Label();
             this.amountOfNamesGeneratedNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.addToListOfNamesButton = new System.Windows.Forms.Button();
             this.nameLenghNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -70,8 +70,7 @@
             this.listOfGeneratedNamesRichTextBox = new System.Windows.Forms.RichTextBox();
             this.namesGeneratedGroupBox = new System.Windows.Forms.GroupBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.nameLengthToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.amountOfNamesGeneratedToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.userNameList = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -156,8 +155,8 @@
             // 
             // nameSpecificationsGroupBox
             // 
+            this.nameSpecificationsGroupBox.Controls.Add(this.numberOfNamesGeneratedLabel);
             this.nameSpecificationsGroupBox.Controls.Add(this.namesGeneratedRichTextBox);
-            this.nameSpecificationsGroupBox.Controls.Add(this.amountGeneratedLabel);
             this.nameSpecificationsGroupBox.Controls.Add(this.amountOfNamesGeneratedNumericUpDown1);
             this.nameSpecificationsGroupBox.Controls.Add(this.addToListOfNamesButton);
             this.nameSpecificationsGroupBox.Controls.Add(this.nameLenghNumericUpDown);
@@ -178,7 +177,17 @@
             this.nameSpecificationsGroupBox.TabIndex = 38;
             this.nameSpecificationsGroupBox.TabStop = false;
             this.nameSpecificationsGroupBox.Text = "Name Specifications";
-            this.amountOfNamesGeneratedToolTip.SetToolTip(this.nameSpecificationsGroupBox, "Amount of names the Generate Button will generate");
+            this.toolTip.SetToolTip(this.nameSpecificationsGroupBox, "Amount of names the Generate Button will generate");
+            // 
+            // numberOfNamesGeneratedLabel
+            // 
+            this.numberOfNamesGeneratedLabel.AutoSize = true;
+            this.numberOfNamesGeneratedLabel.Location = new System.Drawing.Point(290, 14);
+            this.numberOfNamesGeneratedLabel.Name = "numberOfNamesGeneratedLabel";
+            this.numberOfNamesGeneratedLabel.Size = new System.Drawing.Size(76, 17);
+            this.numberOfNamesGeneratedLabel.TabIndex = 42;
+            this.numberOfNamesGeneratedLabel.Text = "# of Names";
+            this.toolTip.SetToolTip(this.numberOfNamesGeneratedLabel, "Amount of names that will be generated");
             // 
             // namesGeneratedRichTextBox
             // 
@@ -189,16 +198,6 @@
             this.namesGeneratedRichTextBox.Size = new System.Drawing.Size(173, 47);
             this.namesGeneratedRichTextBox.TabIndex = 41;
             this.namesGeneratedRichTextBox.Text = "";
-            // 
-            // amountGeneratedLabel
-            // 
-            this.amountGeneratedLabel.AutoSize = true;
-            this.amountGeneratedLabel.Location = new System.Drawing.Point(289, 14);
-            this.amountGeneratedLabel.Name = "amountGeneratedLabel";
-            this.amountGeneratedLabel.Size = new System.Drawing.Size(55, 17);
-            this.amountGeneratedLabel.TabIndex = 40;
-            this.amountGeneratedLabel.Text = "Amount";
-            this.nameLengthToolTip.SetToolTip(this.amountGeneratedLabel, "Leave at 0 for a short to medium length name");
             // 
             // amountOfNamesGeneratedNumericUpDown1
             // 
@@ -233,11 +232,12 @@
             this.nameLenghNumericUpDown.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.nameLenghNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameLenghNumericUpDown.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLenghNumericUpDown.Location = new System.Drawing.Point(106, 110);
+            this.nameLenghNumericUpDown.Location = new System.Drawing.Point(104, 110);
             this.nameLenghNumericUpDown.Name = "nameLenghNumericUpDown";
             this.nameLenghNumericUpDown.Size = new System.Drawing.Size(48, 18);
             this.nameLenghNumericUpDown.TabIndex = 36;
             this.nameLenghNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip.SetToolTip(this.nameLenghNumericUpDown, "Leave at 0 for a random name with a length of 1 - 8");
             this.nameLenghNumericUpDown.ValueChanged += new System.EventHandler(this.nameLenghNumericUpDown_ValueChanged);
             // 
             // generateNameButton
@@ -265,7 +265,7 @@
             this.nameLengthLabel.Size = new System.Drawing.Size(88, 17);
             this.nameLengthLabel.TabIndex = 35;
             this.nameLengthLabel.Text = "Name Length";
-            this.nameLengthToolTip.SetToolTip(this.nameLengthLabel, "Leave at 0 for a short to medium length name");
+            this.toolTip.SetToolTip(this.nameLengthLabel, "Length of the name ");
             this.nameLengthLabel.Click += new System.EventHandler(this.nameLengthLabel_Click);
             // 
             // genderLabel
@@ -519,15 +519,16 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // helpToolStripDropDownButton
             // 
@@ -724,15 +725,14 @@
         private System.Windows.Forms.GroupBox honorificTypeIncludedGroup;
         private System.Windows.Forms.GroupBox genderIncludedGroup;
         private System.Windows.Forms.Button generateNameListButton;
-        private System.Windows.Forms.ToolTip nameLengthToolTip;
         private System.Windows.Forms.RichTextBox namesGeneratedRichTextBox;
-        private System.Windows.Forms.Label amountGeneratedLabel;
         private System.Windows.Forms.NumericUpDown amountOfNamesGeneratedNumericUpDown1;
-        private System.Windows.Forms.ToolTip amountOfNamesGeneratedToolTip;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TabControl userNameList;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox allNamesGeneratedRichTextBox;
+        private System.Windows.Forms.Label numberOfNamesGeneratedLabel;
     }
 }

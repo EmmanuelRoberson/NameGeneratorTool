@@ -41,7 +41,6 @@ namespace NameGeneratorProject.CustomNameGeneratorClasses
         {
             get
             {
-                rand = new Random(DateTime.Now.Millisecond);
                 string name = "";
                 for (int i = 0; i < rand.Next(1, 5); i++)
                 {
