@@ -35,6 +35,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.nameSpecificationsGroupBox = new System.Windows.Forms.GroupBox();
+            this.namesGeneratedRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.amountGeneratedLabel = new System.Windows.Forms.Label();
+            this.amountOfNamesGeneratedNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.addToListOfNamesButton = new System.Windows.Forms.Button();
             this.nameLenghNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.generateNameButton = new System.Windows.Forms.Button();
@@ -68,10 +71,7 @@
             this.namesGeneratedGroupBox = new System.Windows.Forms.GroupBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.nameLengthToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.amountOfNamesGeneratedNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.amountGeneratedLabel = new System.Windows.Forms.Label();
             this.amountOfNamesGeneratedToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.namesGeneratedRichTextBox = new System.Windows.Forms.RichTextBox();
             this.userNameList = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -79,6 +79,7 @@
             this.allNamesGeneratedRichTextBox = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.nameSpecificationsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.amountOfNamesGeneratedNumericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameLenghNumericUpDown)).BeginInit();
             this.nameGeneratorTab.SuspendLayout();
             this.speficicationsTab.SuspendLayout();
@@ -89,7 +90,6 @@
             this.nameClassIncludedGroup.SuspendLayout();
             this.utilitiesToolStrip.SuspendLayout();
             this.namesGeneratedGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.amountOfNamesGeneratedNumericUpDown1)).BeginInit();
             this.userNameList.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -120,7 +120,7 @@
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(721, 0);
+            this.exitButton.Location = new System.Drawing.Point(730, 0);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(38, 32);
             this.exitButton.TabIndex = 36;
@@ -180,6 +180,37 @@
             this.nameSpecificationsGroupBox.Text = "Name Specifications";
             this.amountOfNamesGeneratedToolTip.SetToolTip(this.nameSpecificationsGroupBox, "Amount of names the Generate Button will generate");
             // 
+            // namesGeneratedRichTextBox
+            // 
+            this.namesGeneratedRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.namesGeneratedRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.namesGeneratedRichTextBox.Location = new System.Drawing.Point(292, 59);
+            this.namesGeneratedRichTextBox.Name = "namesGeneratedRichTextBox";
+            this.namesGeneratedRichTextBox.Size = new System.Drawing.Size(173, 47);
+            this.namesGeneratedRichTextBox.TabIndex = 41;
+            this.namesGeneratedRichTextBox.Text = "";
+            // 
+            // amountGeneratedLabel
+            // 
+            this.amountGeneratedLabel.AutoSize = true;
+            this.amountGeneratedLabel.Location = new System.Drawing.Point(289, 14);
+            this.amountGeneratedLabel.Name = "amountGeneratedLabel";
+            this.amountGeneratedLabel.Size = new System.Drawing.Size(55, 17);
+            this.amountGeneratedLabel.TabIndex = 40;
+            this.amountGeneratedLabel.Text = "Amount";
+            this.nameLengthToolTip.SetToolTip(this.amountGeneratedLabel, "Leave at 0 for a short to medium length name");
+            // 
+            // amountOfNamesGeneratedNumericUpDown1
+            // 
+            this.amountOfNamesGeneratedNumericUpDown1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.amountOfNamesGeneratedNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.amountOfNamesGeneratedNumericUpDown1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountOfNamesGeneratedNumericUpDown1.Location = new System.Drawing.Point(292, 35);
+            this.amountOfNamesGeneratedNumericUpDown1.Name = "amountOfNamesGeneratedNumericUpDown1";
+            this.amountOfNamesGeneratedNumericUpDown1.Size = new System.Drawing.Size(75, 18);
+            this.amountOfNamesGeneratedNumericUpDown1.TabIndex = 39;
+            this.amountOfNamesGeneratedNumericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // addToListOfNamesButton
             // 
             this.addToListOfNamesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -189,7 +220,7 @@
             this.addToListOfNamesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumSeaGreen;
             this.addToListOfNamesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addToListOfNamesButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToListOfNamesButton.Location = new System.Drawing.Point(292, 108);
+            this.addToListOfNamesButton.Location = new System.Drawing.Point(292, 112);
             this.addToListOfNamesButton.Name = "addToListOfNamesButton";
             this.addToListOfNamesButton.Size = new System.Drawing.Size(173, 45);
             this.addToListOfNamesButton.TabIndex = 38;
@@ -202,7 +233,7 @@
             this.nameLenghNumericUpDown.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.nameLenghNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameLenghNumericUpDown.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameLenghNumericUpDown.Location = new System.Drawing.Point(106, 137);
+            this.nameLenghNumericUpDown.Location = new System.Drawing.Point(106, 110);
             this.nameLenghNumericUpDown.Name = "nameLenghNumericUpDown";
             this.nameLenghNumericUpDown.Size = new System.Drawing.Size(48, 18);
             this.nameLenghNumericUpDown.TabIndex = 36;
@@ -220,7 +251,7 @@
             this.generateNameButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateNameButton.Location = new System.Drawing.Point(373, 14);
             this.generateNameButton.Name = "generateNameButton";
-            this.generateNameButton.Size = new System.Drawing.Size(92, 59);
+            this.generateNameButton.Size = new System.Drawing.Size(92, 39);
             this.generateNameButton.TabIndex = 33;
             this.generateNameButton.Text = "Generate";
             this.generateNameButton.UseVisualStyleBackColor = false;
@@ -229,7 +260,7 @@
             // nameLengthLabel
             // 
             this.nameLengthLabel.AutoSize = true;
-            this.nameLengthLabel.Location = new System.Drawing.Point(160, 137);
+            this.nameLengthLabel.Location = new System.Drawing.Point(160, 110);
             this.nameLengthLabel.Name = "nameLengthLabel";
             this.nameLengthLabel.Size = new System.Drawing.Size(88, 17);
             this.nameLengthLabel.TabIndex = 35;
@@ -551,41 +582,11 @@
             this.splitter1.TabIndex = 50;
             this.splitter1.TabStop = false;
             // 
-            // amountOfNamesGeneratedNumericUpDown1
-            // 
-            this.amountOfNamesGeneratedNumericUpDown1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.amountOfNamesGeneratedNumericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.amountOfNamesGeneratedNumericUpDown1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amountOfNamesGeneratedNumericUpDown1.Location = new System.Drawing.Point(292, 55);
-            this.amountOfNamesGeneratedNumericUpDown1.Name = "amountOfNamesGeneratedNumericUpDown1";
-            this.amountOfNamesGeneratedNumericUpDown1.Size = new System.Drawing.Size(75, 18);
-            this.amountOfNamesGeneratedNumericUpDown1.TabIndex = 39;
-            this.amountOfNamesGeneratedNumericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // amountGeneratedLabel
-            // 
-            this.amountGeneratedLabel.AutoSize = true;
-            this.amountGeneratedLabel.Location = new System.Drawing.Point(289, 35);
-            this.amountGeneratedLabel.Name = "amountGeneratedLabel";
-            this.amountGeneratedLabel.Size = new System.Drawing.Size(55, 17);
-            this.amountGeneratedLabel.TabIndex = 40;
-            this.amountGeneratedLabel.Text = "Amount";
-            this.nameLengthToolTip.SetToolTip(this.amountGeneratedLabel, "Leave at 0 for a short to medium length name");
-            // 
-            // namesGeneratedRichTextBox
-            // 
-            this.namesGeneratedRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.namesGeneratedRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.namesGeneratedRichTextBox.Location = new System.Drawing.Point(294, 79);
-            this.namesGeneratedRichTextBox.Name = "namesGeneratedRichTextBox";
-            this.namesGeneratedRichTextBox.Size = new System.Drawing.Size(171, 23);
-            this.namesGeneratedRichTextBox.TabIndex = 41;
-            this.namesGeneratedRichTextBox.Text = "";
-            // 
             // userNameList
             // 
             this.userNameList.Controls.Add(this.tabPage1);
             this.userNameList.Controls.Add(this.tabPage2);
+            this.userNameList.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameList.Location = new System.Drawing.Point(508, 57);
             this.userNameList.Name = "userNameList";
             this.userNameList.SelectedIndex = 0;
@@ -596,10 +597,10 @@
             // 
             this.tabPage1.Controls.Add(this.namesGeneratedGroupBox);
             this.tabPage1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(243, 174);
+            this.tabPage1.Size = new System.Drawing.Size(243, 170);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Your List";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -608,10 +609,10 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Font = new System.Drawing.Font("Century", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(243, 174);
+            this.tabPage2.Size = new System.Drawing.Size(243, 170);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "All Names Generated";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -663,6 +664,7 @@
             this.panel1.PerformLayout();
             this.nameSpecificationsGroupBox.ResumeLayout(false);
             this.nameSpecificationsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.amountOfNamesGeneratedNumericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameLenghNumericUpDown)).EndInit();
             this.nameGeneratorTab.ResumeLayout(false);
             this.speficicationsTab.ResumeLayout(false);
@@ -675,7 +677,6 @@
             this.utilitiesToolStrip.ResumeLayout(false);
             this.utilitiesToolStrip.PerformLayout();
             this.namesGeneratedGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.amountOfNamesGeneratedNumericUpDown1)).EndInit();
             this.userNameList.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

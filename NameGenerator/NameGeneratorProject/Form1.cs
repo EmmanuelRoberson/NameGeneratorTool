@@ -80,7 +80,6 @@ namespace NameGeneratorProject
         {
             genderComboBox.Items.Add("Male");
             genderComboBox.Items.Add("Female");
-            genderComboBox.Items.Add("Random");
         }
 
         private void nationalitiesDropDox_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,16 +88,25 @@ namespace NameGeneratorProject
             {
                 nameLenghNumericUpDown.Show();
                 nameLengthLabel.Show();
+                genderComboBox.Hide();
+                genderLabel.Hide();
             }
             else
             {
                 nameLenghNumericUpDown.Hide();
                 nameLengthLabel.Hide();
+                genderComboBox.Show();
+                genderLabel.Show();
             }
-        }
 
-        private void nameGeneratedText_TextChanged(object sender, EventArgs e)
-        {
+            if ((string) nationalitiesDropDox.SelectedItem == "Japanese")
+            {
+                genderComboBox.Items.Add("Random");
+            }
+            else
+            {
+                genderComboBox.Items.Remove("Random");
+            }
 
         }
 
@@ -145,7 +153,7 @@ namespace NameGeneratorProject
             {
                 nameGenerated += (string) availableHonorifics.SelectedItem;
             }
-                else
+            else
             {
                 nameGenerated = (string)availableHonorifics.SelectedItem + " " + nameGenerated;
             }
@@ -187,35 +195,39 @@ namespace NameGeneratorProject
 
         private void generateNameButton_Click(object sender, EventArgs e)
         {
-            if (
-                (string)nationalitiesDropDox.SelectedItem == "Japanese" && 
-                (string)genderComboBox.SelectedItem != "Male" &&
-                (string)genderComboBox.SelectedItem != "Female")
+            namesGeneratedRichTextBox.Clear();
+            for (int i = 0; i < amountOfNamesGeneratedNumericUpDown1.Value; i++)
             {
-                JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
-                nameGenerated = japaneseNameBuilder.GenerateName;
-            }
-            else if ((string)nationalitiesDropDox.SelectedItem == "Randomly Generated")
-            {
-                nameGenerated = nameGenerator.GenerateWholeName((int)nameLenghNumericUpDown.Value);
-            }
-            else
-            { 
-                foreach (var generatorType in nameGeneratorList.List)
+                if (
+                    (string) nationalitiesDropDox.SelectedItem == "Japanese" &&
+                    (string) genderComboBox.SelectedItem != "Male" &&
+                    (string) genderComboBox.SelectedItem != "Female")
                 {
-                    if ((string)nationalitiesDropDox.SelectedItem == generatorType.NameType)
+                    JapaneseNameBuilder japaneseNameBuilder = new JapaneseNameBuilder("JapaneseSyllables.csv");
+                    nameGenerated = japaneseNameBuilder.GenerateName;
+                }
+                else if ((string) nationalitiesDropDox.SelectedItem == "Randomly Generated")
+                {
+                    nameGenerated = nameGenerator.GenerateWholeName((int) nameLenghNumericUpDown.Value);
+                }
+                else
+                {
+                    foreach (var generatorType in nameGeneratorList.List)
                     {
-                        nameGenerated =
-                            ((string)genderComboBox.SelectedItem == "Male")
-                                ? generatorType.MaleName
-                                : generatorType.FemaleName;
+                        if ((string) nationalitiesDropDox.SelectedItem == generatorType.NameType)
+                        {
+                            nameGenerated =
+                                ((string) genderComboBox.SelectedItem == "Male")
+                                    ? generatorType.MaleName
+                                    : generatorType.FemaleName;
+                        }
                     }
                 }
-            }
 
-            AddHonorific(sender, e);
-            namesGeneratedRichTextBox.Text = nameGenerated + '\n';
-            allNamesGeneratedRichTextBox.Text += nameGenerated + '\n';
+                AddHonorific(sender, e);
+                namesGeneratedRichTextBox.Text += nameGenerated + '\n';
+                allNamesGeneratedRichTextBox.Text += nameGenerated + '\n';
+            }
         }
 
         private void nameLenghNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -231,7 +243,10 @@ namespace NameGeneratorProject
 
         private void addToNamesGeneratedButton_Click(object sender, EventArgs e)
         {
-            listOfGeneratedNamesRichTextBox.Text += nameGenerated + '\n';
+            for (int i = 0; i < namesGeneratedRichTextBox.Lines.Length - 1; i++)
+            {
+                listOfGeneratedNamesRichTextBox.Text += namesGeneratedRichTextBox.Lines[i] + '\n';
+            }
         }
 
         private void listOfGeneratedNamesRichTextBox_TextChanged(object sender, EventArgs e)
