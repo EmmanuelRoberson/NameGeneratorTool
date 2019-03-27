@@ -24,21 +24,6 @@ namespace NameGeneratorProject
             };
         }
 
-        //Save Name
-        private void button2_Click(object sender, EventArgs e)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(string));
-
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "RandomlyGeneratedName.xml");
-
-            TextWriter writer = new StreamWriter("RandomlyGeneratedName.xml");
-
-            serializer.Serialize(writer, nameGenerated);
-
-            writer.Close();
-
-        }
-
         //GENERATE NAME
         private void button1_Click(object sender, EventArgs e)
         {
@@ -64,13 +49,13 @@ namespace NameGeneratorProject
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(string));
+            XmlSerializer serializer = new XmlSerializer(typeof(NameContainer));
 
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), nameGenerated + ".xml");
 
             TextWriter writer = new StreamWriter(nameGenerated + ".xml");
 
-            serializer.Serialize(writer, nameGenerated);
+            serializer.Serialize(writer, new NameContainer{name = nameGenerated, nameLength = nameGenerated.Length});
             writer.Close();
         }
 
@@ -80,10 +65,11 @@ namespace NameGeneratorProject
             ofd.InitialDirectory = Directory.GetCurrentDirectory();
             ofd.ShowDialog();
 
-            XmlSerializer serializer = new XmlSerializer(typeof(string));
+            XmlSerializer serializer = new XmlSerializer(typeof(NameContainer));
             XmlReader reader = new XmlTextReader(ofd.FileName);
-            nameGenerated = (string) serializer.Deserialize(reader);
+            var saveContainer = (NameContainer) serializer.Deserialize(reader);
             reader.Close();
+            nameGenerated = saveContainer.name;
             nameGeneratedTextBox.Text = nameGenerated;
         }
     }

@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\IBaseNameBuildable.cs" />
     <Compile Include="Interfaces\IPrefixable.cs" />
     <Compile Include="Interfaces\ISuffixable.cs" />
+    <Compile Include="NameContainer.cs" />
     <Compile Include="RandomNameGenetator.cs" />
     <Compile Include="PrefixList.cs" />
     <Compile Include="Program.cs" />
