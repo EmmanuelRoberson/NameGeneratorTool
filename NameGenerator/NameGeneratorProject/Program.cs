@@ -4,6 +4,29 @@ using NameGeneratorProject;
 
 namespace IntroToCSharp
 {
+    class Logger
+    {
+        Logger()
+        {
+            DoTheThing();
+        }
+        public void Log(string str)
+        {
+            Program.Print(str);
+        }
+
+        void DoTheThing()
+        {
+            Log("my logga");
+
+            string exitPhrase = Console.ReadLine();
+            while (exitPhrase != "You can't say that")
+            {
+                exitPhrase = Console.ReadLine();
+            }
+        }
+    }
+
     class Program
     {
         static public void Print(string str)
