@@ -43,7 +43,7 @@ namespace NameGeneratorProject
         private void button1_Click(object sender, EventArgs e)
         {
             nameGenerated = RandomNameBuilder.GenerateName();
-            nameGeneratedButton.Text = nameGenerated;
+            nameGeneratedTextBox.Text = nameGenerated;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace NameGeneratorProject
             XmlReader reader = new XmlTextReader(ofd.FileName);
             nameGenerated = (string) serializer.Deserialize(reader);
             reader.Close();
-            nameGeneratedButton.Text = nameGenerated;
+            nameGeneratedTextBox.Text = nameGenerated;
         }
     }
 }
